@@ -1,9 +1,9 @@
 ##### Preamble -----
 
-rm(list = ls())
+#rm(list = ls())
 
 # Working Directory
-setwd("/Users/dominiklawetzky/Documents/Infratest")
+#setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage")
 
 ## PACKAGE NAMEN
 packages <- c("ggplot2", "readxl", "dplyr", "multcomp", "tidyr", "knitr", "car", "psych", "tidyverse", "lmtest", "ggpubr", "ggstatsplot", "jsonlite", "pander", "abind", "RColorBrewer", "rococo", "shiny", "gvlma", "emmeans", "ez")
@@ -866,8 +866,6 @@ plot7 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y
   facet_wrap(~ Partei)
 
 ggsave(file="plot7.jpg", plot=plot7, width=10, height=6)
-
-stat_growthcurve
 
 ## PLOT 7
 
