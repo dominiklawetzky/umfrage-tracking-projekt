@@ -25,3 +25,5 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 ## Plot 7
 ![plot7](https://user-images.githubusercontent.com/75689258/125210985-4039ab80-e2a3-11eb-89db-9953eb7ff207.jpg)
 
+## Datenquellen
+- [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
