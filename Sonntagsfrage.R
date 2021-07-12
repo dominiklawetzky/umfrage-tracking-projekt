@@ -708,11 +708,13 @@ infratest_long <- infratest %>%
 
 infratest_long$Partei <- as.factor(infratest_long$Partei)
 infratest_long$Datum <- format(as.Date(infratest_long$Datum, format="%d.%m.%y"), "%d.%m.%y")
+
+
 ##### Deskriptivstatistik -----
 
-colors <- c(Union = "#000000", SPD = "#e2001a", FDP = "#fbeb04", Grüne = "#1ca42c", AfD = "#019ee3", Linke* = "#bd3076", Piraten = "#f39200", Andere = "#7c7c7c")
 
 colors <- c("#019ee3", "#7c7c7c", "#fbeb04", "#1ca42c", "#bd3076", "#f39200", "#e2001a", "#000000")
+colors_alt <- c("#019ee3", "#7c7c7c", "#fbeb04", "#1ca42c", "#bd3076", "#e2001a", "#000000")
 
 ## PLOT 1
 
@@ -726,7 +728,7 @@ plot1 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y
                        color = "Legende",
                        x = "Datum",
                        caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-                  scale_fill_manual(name = "Legende", values = colors) +
+                  scale_fill_manual(name = "Legende", values = colors_alt) +
                   theme_light() +
                   theme(axis.text.x=element_text(size=rel(0.5), angle=90)) +
                   theme(legend.position="bottom") +
@@ -746,7 +748,7 @@ plot2 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y
                      color = "Legende",
                      x = "Datum",
                      caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-                scale_fill_manual(name = "Legende", values = colors) +
+                scale_fill_manual(name = "Legende", values = colors_alt) +
                 theme_light() +
                 theme(axis.text.x=element_text(size=rel(1), angle=90)) +
                 theme(legend.position="bottom") +
@@ -867,9 +869,9 @@ plot7 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y
 
 ggsave(file="plot7.jpg", plot=plot7, width=10, height=6)
 
+
+
 ## PLOT 7
-
-
 
 min <- as.Date("04.01.18", "%d.%m.%y")
 max <- as.Date("01.07.21", "%d.%m.%y")
@@ -889,4 +891,4 @@ plot7 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y
   scale_x_date(breaks = "1 month", limits = c(min, max))
 
 
-ggsave(file="plot7.svg", plot=plot7, width=10, height=6)
+ggsave(file="plot7.jpg", plot=plot7, width=10, height=6)
