@@ -718,8 +718,8 @@ colors_alt <- c("#019ee3", "#7c7c7c", "#fbeb04", "#1ca42c", "#bd3076", "#e2001a"
 
 ## PLOT 1
 
-min <- as.Date("07.01.10")
-max <- as.Date("01.07.21")
+min <- as.Date("07.01.10", format = "%d.%m.%y")
+max <- as.Date("01.07.21", format = "%d.%m.%y")
 
 plot1 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, fill = as.factor(Partei))) +
                   geom_bar(stat = "identity") +
@@ -728,7 +728,7 @@ plot1 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y
                        color = "Legende",
                        x = "Datum",
                        caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-                  scale_fill_manual(name = "Legende", values = colors_alt) +
+                  scale_fill_manual(name = "Legende", values = colors) +
                   theme_light() +
                   theme(axis.text.x=element_text(size=rel(0.5), angle=90)) +
                   theme(legend.position="bottom") +
