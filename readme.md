@@ -1,5 +1,9 @@
 # Übersicht über die Plots
 
+Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 12. Juli 2021.
+
+Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominiklawetzky/sonntagsfrage/tree/main/SVG).
+
 ## Plot 1
 ![plot1](https://user-images.githubusercontent.com/75689258/125253566-d8fb1600-e2f9-11eb-9bc9-e76acebd4eba.jpg)
 
@@ -21,3 +25,5 @@
 ## Plot 7
 ![plot7](https://user-images.githubusercontent.com/75689258/125210985-4039ab80-e2a3-11eb-89db-9953eb7ff207.jpg)
 
+## Datenquellen
+- [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
