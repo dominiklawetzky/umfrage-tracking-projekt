@@ -1,7 +1,7 @@
 # Übersicht über die Plots
 
 ## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/125252884-275be500-e2f9-11eb-95ec-bde5b7a4a97c.jpg)
+![plot1](https://user-images.githubusercontent.com/75689258/125253566-d8fb1600-e2f9-11eb-9bc9-e76acebd4eba.jpg)
 
 ## Plot 2
 ![plot2](https://user-images.githubusercontent.com/75689258/125252903-2b880280-e2f9-11eb-8220-1592cc28003e.jpg)
