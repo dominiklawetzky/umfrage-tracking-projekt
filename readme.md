@@ -1,10 +1,10 @@
 # Übersicht über die Plots
 
 ## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/125210951-1da79280-e2a3-11eb-9c4d-075737a6022e.jpg)
+![plot1](https://user-images.githubusercontent.com/75689258/125252884-275be500-e2f9-11eb-95ec-bde5b7a4a97c.jpg)
 
 ## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/125210956-2304dd00-e2a3-11eb-86c2-29cfca333db8.jpg)
+![plot2](https://user-images.githubusercontent.com/75689258/125252903-2b880280-e2f9-11eb-8220-1592cc28003e.jpg)
 
 ## Plot 3
 ![plot3](https://user-images.githubusercontent.com/75689258/125210961-28622780-e2a3-11eb-91e8-ace43e1ea930.jpg)
