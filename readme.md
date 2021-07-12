@@ -20,7 +20,7 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 ![plot5](https://user-images.githubusercontent.com/75689258/125210977-31eb8f80-e2a3-11eb-8b73-6b3bc493142d.jpg)
 
 ## Plot 6
-![plot6](https://user-images.githubusercontent.com/75689258/125210984-3c0d8e00-e2a3-11eb-9f37-735fa79525b0.jpg)
+![plot6](https://user-images.githubusercontent.com/75689258/125255742-0943b400-e2fc-11eb-987a-011cc735ed76.jpg)
 
 ## Plot 7
 ![plot7](https://user-images.githubusercontent.com/75689258/125210985-4039ab80-e2a3-11eb-89db-9953eb7ff207.jpg)
