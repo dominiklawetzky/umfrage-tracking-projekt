@@ -788,7 +788,7 @@ max <- as.Date("01.07.21", "%d.%m.%y")
 plot4 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
                   geom_line(stat = "identity", size = 1) +
                   geom_point(size = 1) +
-                  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", size = .5, linetype = "dashed") +
+                  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", span = .5, size = 1, linetype = "dashed") +
                   labs(title = "Zustimmungswerte der großen politischen Parteien", 
                        subtitle = "seit Januar 2020 / mit LOESS-Glättung",
                        color = "Legende",
@@ -832,7 +832,7 @@ max <- as.Date("01.07.21", "%d.%m.%y")
 
 plot6 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
   geom_line(stat = "identity", size = 1) +
-  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", size = .5, linetype = "dashed") +
+  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", span = .25, size = .5, linetype = "dashed") +
   labs(title = "Zustimmungswerte der großen politischen Parteien", 
        subtitle = "seit Januar 2010 / mit LOESS-Glättung",
        color = "Legende",
