@@ -27,4 +27,3 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
 - [Allensbach](https://www.ifd-allensbach.de/studien-und-berichte/sonntagsfrage/gesamt.html)
 - [Forschungsgruppe Wahlen](https://www.wahlrecht.de/umfragen/politbarometer.htm)
-
