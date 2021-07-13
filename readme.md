@@ -1,6 +1,6 @@
 # Übersicht über die Plots
 
-Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 12. Juli 2021.
+Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 13. Juli 2021.
 
 Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominiklawetzky/sonntagsfrage/tree/main/SVG).
 
