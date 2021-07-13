@@ -10,13 +10,14 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 ![plot1](https://user-images.githubusercontent.com/75689258/125426199-158ca425-5f00-4d43-b5e5-ac9435e5c5d5.jpg)
 
 ## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/125252903-2b880280-e2f9-11eb-8220-1592cc28003e.jpg)
+![plot2](https://user-images.githubusercontent.com/75689258/125427856-0bb4a2aa-06d0-46a0-a269-2d99aea306b8.jpg)
+
 
 ## Plot 3
-![plot3](https://user-images.githubusercontent.com/75689258/125210961-28622780-e2a3-11eb-91e8-ace43e1ea930.jpg)
+![plot3](https://user-images.githubusercontent.com/75689258/125427911-ea072cde-e444-4faf-8250-2f008d3405fd.jpg)
 
 ## Plot 4
-![plot4](https://user-images.githubusercontent.com/75689258/125210966-2c8e4500-e2a3-11eb-890a-78e7b72d6ee3.jpg)
+ ![plot4](https://user-images.githubusercontent.com/75689258/125428227-586ea355-5de3-4d0b-97fe-616b6679fa07.jpg)
 
 ## Plot 5
 ![plot5](https://user-images.githubusercontent.com/75689258/125210977-31eb8f80-e2a3-11eb-8b73-6b3bc493142d.jpg)
@@ -29,3 +30,5 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
+- [Allensbach](https://www.ifd-allensbach.de/studien-und-berichte/sonntagsfrage/gesamt.html)
+- [Forschungsgruppe Wahlen](https://www.wahlrecht.de/umfragen/politbarometer.htm)
