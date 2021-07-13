@@ -95,7 +95,7 @@ dataset$Institut <- as.factor(dataset$Institut)
 ##### Wahlergebnisse -----
 
 wahl <- data.frame(Datum = c("22.09.2013", "24.09.2017"),
-                   Name = c("Bundestagwahl 2013", "Bundestagswahl 2017"),
+                   Name = c("Bundestagswahl 2013", "Bundestagswahl 2017"),
                    Union = c(41.5, 32.9),
                    SPD = c(25.7, 20.5),
                    FDP = c(4.8, 10.7),
@@ -193,7 +193,7 @@ plot1 <- ggplot(data = dataset) +
                                limits = c(min, max))
 
 
-ggsave(file="plot1.svg", plot=plot1, width=15, height=8)
+ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
 
 
 ## PLOT 2
