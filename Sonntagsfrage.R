@@ -129,20 +129,25 @@ ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
 min <- as.Date("09.01.20", "%d.%m.%y")
 max <- as.Date("01.07.21", "%d.%m.%y")
 
-plot2 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, fill = as.factor(Partei))) +
-                geom_bar(stat = "identity") +
-                labs(title = "Zustimmungswerte der großen politischen Parteien", 
-                     subtitle = "seit Januar 2020",
-                     color = "Legende",
-                     x = "Datum",
-                     caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-                scale_fill_manual(name = "Legende", values = colors_alt) +
-                theme_light() +
-                theme(axis.text.x=element_text(size=rel(1), angle=90)) +
-                theme(legend.position="bottom") +
-                scale_x_date(breaks = "1 month", limits = c(min, max))
+plot2 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei), linetype = as.factor(Institut), shape = as.factor(Institut))) +
+                  geom_point(stat = "identity", size = .8) +
+                  geom_line() +
+                  #geom_smooth(method = "loess", se = TRUE, span = 2) +
+                  labs(title = "Zustimmungswerte der großen politischen Parteien", 
+                       subtitle = "seit Januar 2020 über verschiedene Umfrage-Institute",
+                       color = "Parteien",
+                       linetype = "Institute",
+                       shape = "Institute",
+                       x = "Datum",
+                       caption = "github.com/dominiklawetzky/sonntagsfrage") +
+                  scale_color_manual(name = "Legende", values = colors) +
+                  theme_light() +
+                  theme(axis.text.x=element_text(size=rel(.75), angle=90)) +
+                  theme(plot.title = element_text(size = 18, face = "bold")) +
+                  theme(legend.position="bottom") +
+                  scale_x_date(breaks = "1 month", limits = c(min, max))
 
-ggsave(file="plot2.jpg", plot=plot2, width=8, height=6)
+ggsave(file="plot2.jpg", plot=plot2, width=10, height=6)
 
 
 
@@ -152,22 +157,23 @@ ggsave(file="plot2.jpg", plot=plot2, width=8, height=6)
 min <- as.Date("09.01.20", "%d.%m.%y")
 max <- as.Date("01.07.21", "%d.%m.%y")
 
-plot3 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
-                  geom_line(stat = "identity", size = 1) +
-                  geom_point(size = 1) +
+plot3 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei), linetype = as.factor(Institut), shape = as.factor(Institut))) +
+                  geom_smooth(method = "loess", se = FALSE, span = .5) +
                   labs(title = "Zustimmungswerte der großen politischen Parteien", 
-                       subtitle = "seit Januar 2020",
-                       color = "Legende",
+                       subtitle = "seit Januar 2020 über verschiedene Umfrage-Institute (LOESS-Glättung)",
+                       color = "Parteien",
+                       linetype = "Institute",
+                       shape = "Institute",
                        x = "Datum",
-                       caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
+                       caption = "github.com/dominiklawetzky/sonntagsfrage") +
                   scale_color_manual(name = "Legende", values = colors) +
                   theme_light() +
-                  theme(axis.text.x=element_text(size=rel(1), angle=90)) +
+                  theme(axis.text.x=element_text(size=rel(.75), angle=90)) +
+                  theme(plot.title = element_text(size = 18, face = "bold")) +
                   theme(legend.position="bottom") +
-                  scale_x_date(breaks = "1 month", limits = c(min, max))
+                  scale_x_date(breaks = "2 week", limits = c(min, max))
 
-ggsave(file="plot3.jpg", plot=plot3, width=8, height=6)
-
+ggsave(file="plot3.jpg", plot=plot3, width=10, height=6)
 
 
 
@@ -177,22 +183,23 @@ ggsave(file="plot3.jpg", plot=plot3, width=8, height=6)
 min <- as.Date("09.01.20", "%d.%m.%y")
 max <- as.Date("01.07.21", "%d.%m.%y")
 
-plot4 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
-                  geom_line(stat = "identity", size = 1) +
-                  geom_point(size = 1) +
-                  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", span = .5, size = 1, linetype = "dashed") 
-                  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-                       subtitle = "seit Januar 2020 / mit LOESS-Glättung",
-                       color = "Legende",
-                       x = "Datum",
-                       caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-                  scale_color_manual(name = "Legende", values = colors) +
-                  theme_light() +
-                  theme(axis.text.x=element_text(size=rel(1), angle=90)) +
-                  theme(legend.position="bottom") +
-                  scale_x_date(breaks = "1 month", limits = c(min, max))
+plot4 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei), linetype = as.factor(Institut), shape = as.factor(Institut))) +
+                geom_smooth(method = "loess", se = TRUE, span = .5) +
+                labs(title = "Zustimmungswerte der großen politischen Parteien", 
+                     subtitle = "seit Januar 2020 über verschiedene Umfrage-Institute (LOESS-Glättung und Konfidenzintervall)",
+                     color = "Parteien",
+                     linetype = "Institute",
+                     shape = "Institute",
+                     x = "Datum",
+                     caption = "github.com/dominiklawetzky/sonntagsfrage") +
+                scale_color_manual(name = "Legende", values = colors) +
+                theme_light() +
+                theme(axis.text.x=element_text(size=rel(.75), angle=90)) +
+                theme(plot.title = element_text(size = 18, face = "bold")) +
+                theme(legend.position="bottom") +
+                scale_x_date(breaks = "2 week", limits = c(min, max))
 
-ggsave(file="plot4.jpg", plot=plot4, width=8, height=6)
+ggsave(file="plot4.jpg", plot=plot4, width=10, height=6)
 
 
 
@@ -203,95 +210,20 @@ ggsave(file="plot4.jpg", plot=plot4, width=8, height=6)
 min <- as.Date("07.01.10", "%d.%m.%y")
 max <- as.Date("01.07.21", "%d.%m.%y")
 
-plot5 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
-  geom_line(stat = "identity", size = 1) +
-  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-       subtitle = "seit Januar 2010",
-       color = "Legende",
-       x = "Datum",
-       caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-  scale_color_manual(name = "Legende", values = colors) +
-  theme_light() +
-  theme(axis.text.x=element_text(size=rel(.5), angle=90)) +
-  theme(legend.position="bottom") +
-  scale_x_date(breaks = "1 month", limits = c(min, max))
+plot5 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
+                geom_smooth(method = "loess", se = TRUE, span = .5) +
+                labs(title = "Zustimmungswerte der großen politischen Parteien", 
+                     subtitle = "seit Januar 2010 über verschiedene Umfrage-Institute (LOESS-Glättung und Konfidenzintervall)",
+                     color = "Parteien",
+                     x = "Datum",
+                     caption = "github.com/dominiklawetzky/sonntagsfrage") +
+                scale_color_manual(name = "Legende", values = colors) +
+                theme_light() +
+                theme(axis.text.x=element_text(size=rel(.75), angle=90)) +
+                theme(plot.title = element_text(size = 18, face = "bold")) +
+                theme(legend.position="bottom") +
+                scale_x_date(breaks = "6 month", limits = c(min, max)) +
+                facet_wrap(~Institut)
 
-ggsave(file="plot5.jpg", plot=plot5, width=10, height=6)
-
-
-
-
-
-## PLOT 6
-
-min <- as.Date("07.01.10", "%d.%m.%y")
-max <- as.Date("01.07.21", "%d.%m.%y")
-
-plot6 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
-  geom_line(stat = "identity", size = 1) +
-  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", span = .25, size = .5, linetype = "dashed") +
-  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-       subtitle = "seit Januar 2010 / mit LOESS-Glättung",
-       color = "Legende",
-       x = "Datum",
-       caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-  scale_color_manual(name = "Legende", values = colors) +
-  theme_light() +
-  theme(axis.text.x=element_text(size=rel(.5), angle=90)) +
-  theme(legend.position="bottom") +
-  scale_x_date(breaks = "1 month", limits = c(min, max))
-
-ggsave(file="plot6.jpg", plot=plot6, width=10, height=6)
-
-
-
-
-
-## PLOT 7
-
-min <- as.Date("04.01.18", "%d.%m.%y")
-max <- as.Date("01.07.21", "%d.%m.%y")
-
-plot7 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
-  geom_line(stat = "identity", size = 1) +
-  geom_smooth(aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei)), method = "loess", size = .5, linetype = "dashed") +
-  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-       subtitle = "seit Januar 2018 / mit LOESS-Glättung",
-       color = "Legende",
-       x = "Datum",
-       caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-  scale_color_manual(name = "Legende", values = colors) +
-  theme_light() +
-  theme(axis.text.x=element_text(size=rel(.5), angle=90)) +
-  theme(legend.position="bottom") +
-  scale_x_date(breaks = "1 month", limits = c(min, max)) +
-  facet_wrap(~ Partei)
-
-ggsave(file="plot7.jpg", plot=plot7, width=10, height=6)
-
-
-
-
-
-## PLOT 7
-
-min <- as.Date("04.01.18", "%d.%m.%y")
-max <- as.Date("01.07.21", "%d.%m.%y")
-
-plot7 <- ggplot(data = infratest_long, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei))) +
-  geom_line(stat = "identity", size = 1) +
-  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-       subtitle = "seit Januar 2018 / mit LOESS-Glättung",
-       color = "Legende",
-       x = "Datum",
-       caption = "Daten: Infratest Dimap / Aufbereitung: Dominik Lawetzky") +
-  scale_color_manual(name = "Legende", values = colors) +
-  theme_light() +
-  theme(axis.text.x=element_text(size=rel(.5), angle=90)) +
-  theme(legend.position="bottom") +
-  scale_x_date(breaks = "1 month", limits = c(min, max))
-
-
-ggsave(file="plot7.jpg", plot=plot7, width=10, height=6)
-
+ggsave(file="plot5.jpg", plot=plot5, width=15, height=6)
 
