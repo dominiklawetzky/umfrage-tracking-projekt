@@ -113,7 +113,7 @@ plot1 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                        shape = "Institute",
                        x = "Datum",
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                  scale_color_manual(name = "Legende", values = colors) +
+                  scale_color_manual(name = "Parteien", values = colors) +
                   theme_light() +
                   theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                   theme(plot.title = element_text(size = 18, face = "bold")) +
@@ -140,7 +140,7 @@ plot2 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                        shape = "Institute",
                        x = "Datum",
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                  scale_color_manual(name = "Legende", values = colors) +
+                  scale_color_manual(name = "Parteien", values = colors) +
                   theme_light() +
                   theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                   theme(plot.title = element_text(size = 18, face = "bold")) +
@@ -166,7 +166,7 @@ plot3 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                        shape = "Institute",
                        x = "Datum",
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                  scale_color_manual(name = "Legende", values = colors) +
+                  scale_color_manual(name = "Parteien", values = colors) +
                   theme_light() +
                   theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                   theme(plot.title = element_text(size = 18, face = "bold")) +
@@ -192,7 +192,7 @@ plot4 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                      shape = "Institute",
                      x = "Datum",
                      caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                scale_color_manual(name = "Legende", values = colors) +
+                scale_color_manual(name = "Parteien", values = colors) +
                 theme_light() +
                 theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                 theme(plot.title = element_text(size = 18, face = "bold")) +
@@ -217,7 +217,7 @@ plot5 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                      color = "Parteien",
                      x = "Datum",
                      caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                scale_color_manual(name = "Legende", values = colors) +
+                scale_color_manual(name = "Parteien", values = colors) +
                 theme_light() +
                 theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                 theme(plot.title = element_text(size = 18, face = "bold")) +
