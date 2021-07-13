@@ -1,6 +1,7 @@
 # Übersicht über die Plots
 
-Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 13. Juli 2021.
+Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 13. Juli 2021. 
+(Leider gibt es keine zugänglichen APIs der einzelnen Institute. Die Daten müssen aufwendig händisch geladen und formatiert werden.)
 
 Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominiklawetzky/sonntagsfrage/tree/main/SVG).
 
