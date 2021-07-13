@@ -15,13 +15,13 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 ![plot2](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot2.jpg)
 
 ## Plot 3
-![plot3](https://user-images.githubusercontent.com/75689258/125430383-8118e434-4778-4431-a4f5-d57851346320.jpg)
+![plot3](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot3.jpg)
 
 ## Plot 4
-![plot4](https://user-images.githubusercontent.com/75689258/125430404-020551da-098b-44b0-9955-5f7e3fe02e64.jpg)
+![plot4](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot4.jpg)
 
 ## Plot 5
-![plot5](https://user-images.githubusercontent.com/75689258/125430422-0f9c4512-8fe6-411d-9524-89f931e51e41.jpg)
+![plot5](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot5.jpg)
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
