@@ -8,20 +8,19 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen. Denkbar wäre eine Shiny-App, die bspw. ermöglicht, die Zustimmungswerte einer Partei über die Umfrage-Institute zu vergleichen. 
 
 ## Plot 1
-![plot1](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot1.jpg)
-
+![plot1](https://user-images.githubusercontent.com/75689258/125515106-0a554edd-d93c-418a-8000-82ee388a6bf9.jpg)
 
 ## Plot 2
-![plot2](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot2.jpg)
+![plot2](https://user-images.githubusercontent.com/75689258/125438725-d94350a8-6e22-4bfc-97a8-b6f090c3f0f7.jpg)
 
 ## Plot 3
-![plot3](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot3.jpg)
+![plot3](https://user-images.githubusercontent.com/75689258/125438737-b1e6f4b8-1b38-48a2-9cb2-a335aabcdf5e.jpg)
 
 ## Plot 4
-![plot4](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot4.jpg)
+![plot4](https://user-images.githubusercontent.com/75689258/125438751-19f7c237-c622-4c6b-89dd-592731fa8c66.jpg)
 
 ## Plot 5
-![plot5](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot5.jpg)
+![plot5](https://user-images.githubusercontent.com/75689258/125438764-59d3f56a-3867-4132-916b-c253fa53b9b2.jpg)
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
