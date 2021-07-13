@@ -1,9 +1,9 @@
 ##### Preamble -----
 
-rm(list = ls())
+#rm(list = ls())
 
 # Working Directory
-setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage")
+#setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage")
 
 ## PACKAGE NAMEN
 packages <- c("ggplot2", "readxl", "dplyr", "multcomp", "tidyr", "knitr", "car", "psych", "tidyverse", "lmtest", "ggpubr", "ggstatsplot", "jsonlite", "pander", "abind", "RColorBrewer", "rococo", "shiny", "gvlma", "emmeans", "ez")
@@ -121,7 +121,7 @@ plot1 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                   scale_x_date(breaks = "6 month", limits = c(min, max))
 
 
-ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
+ggsave(file="plot1.svg", plot=plot1, width=15, height=8)
 
 
 ## PLOT 2
@@ -147,7 +147,7 @@ plot2 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                   theme(legend.position="bottom") +
                   scale_x_date(breaks = "1 month", limits = c(min, max))
 
-ggsave(file="plot2.jpg", plot=plot2, width=10, height=6)
+ggsave(file="plot2.svg", plot=plot2, width=10, height=6)
 
 
 
@@ -173,7 +173,7 @@ plot3 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                   theme(legend.position="bottom") +
                   scale_x_date(breaks = "2 week", limits = c(min, max))
 
-ggsave(file="plot3.jpg", plot=plot3, width=10, height=6)
+ggsave(file="plot3.svg", plot=plot3, width=10, height=6)
 
 
 
@@ -199,7 +199,7 @@ plot4 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                 theme(legend.position="bottom") +
                 scale_x_date(breaks = "2 week", limits = c(min, max))
 
-ggsave(file="plot4.jpg", plot=plot4, width=10, height=6)
+ggsave(file="plot4.svg", plot=plot4, width=10, height=6)
 
 
 
@@ -225,5 +225,5 @@ plot5 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                 scale_x_date(breaks = "6 month", limits = c(min, max)) +
                 facet_wrap(~Institut)
 
-ggsave(file="plot5.jpg", plot=plot5, width=15, height=6)
+ggsave(file="plot5.svg", plot=plot5, width=15, height=6)
 
