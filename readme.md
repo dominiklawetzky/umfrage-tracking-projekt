@@ -8,11 +8,11 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen. Denkbar wäre eine Shiny-App, die bspw. ermöglicht, die Zustimmungswerte einer Partei über die Umfrage-Institute zu vergleichen. 
 
 ## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/125430344-05ec25a2-56f9-4d21-b52f-cb292f823a45.jpg)
+![plot1](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot1.jpg)
 
 
 ## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/125430370-c2da6092-63b5-41cb-b6de-2a9dbb7d146c.jpg)
+![plot2](https://github.com/dominiklawetzky/sonntagsfrage/blob/main/JPG/plot2.jpg)
 
 ## Plot 3
 ![plot3](https://user-images.githubusercontent.com/75689258/125430383-8118e434-4778-4431-a4f5-d57851346320.jpg)
