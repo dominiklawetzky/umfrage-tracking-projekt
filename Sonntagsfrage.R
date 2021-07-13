@@ -1,9 +1,9 @@
 ##### Preamble -----
 
-#rm(list = ls())
+rm(list = ls())
 
 # Working Directory
-#setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage")
+setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage")
 
 ## PACKAGE NAMEN
 packages <- c("ggplot2", "readxl", "dplyr", "multcomp", "tidyr", "knitr", "car", "psych", "tidyverse", "lmtest", "ggpubr", "ggstatsplot", "jsonlite", "pander", "abind", "RColorBrewer", "rococo", "shiny", "gvlma", "emmeans", "ez")
@@ -24,7 +24,7 @@ invisible(lapply(packages, library, character.only = TRUE))
 
 ##### Infratest laden -----
 
-source("infratest.R") # Infratest-Daten laden
+source("Daten/infratest.R") # Infratest-Daten laden
 
 infratest$AfD <- round(as.numeric(infratest$AfD), 0)
 infratest$FDP <- round(as.numeric(infratest$FDP), 0)
@@ -42,7 +42,7 @@ infratest_long$Institut <- c("Infratest")
 
 ##### Allensbach laden -----
 
-allensbach <- read.csv("allensbach.csv", header = TRUE, sep = c(";", " - "), dec = ",")
+allensbach <- read.csv("Daten/allensbach.csv", header = TRUE, sep = c(";", " - "), dec = ",")
 
 allensbach$Datum <- substr(allensbach$Zeitraum, 9, nchar(allensbach$Zeitraum)) # Nur Endzeitpunkt der Erhebung als Datum
 
@@ -65,7 +65,7 @@ allensbach_long$Institut <- c("Allensbach")
 
 ##### Forschungsgruppe Wahlen -----
 
-forschungsgruppe <- read.csv("forschungsgruppe.csv", header = TRUE, sep = c(";"), dec = ".", na.strings = "NA")
+forschungsgruppe <- read.csv("Daten/forschungsgruppe.csv", header = TRUE, sep = c(";"), dec = ".", na.strings = "NA")
 
 forschungsgruppe <- subset(forschungsgruppe, select = -c(X, n, Zeitraum)) # Überflüssige Variablen löschen
 
@@ -91,6 +91,29 @@ dataset <- rbind(allensbach_long, infratest_long, forschungsgruppe_long)
 
 dataset$Institut <- as.factor(dataset$Institut)
 
+
+##### Wahlergebnisse -----
+
+wahl <- data.frame(Datum = c("22.09.2013", "24.09.2017"),
+                   Name = c("Bundestagwahl 2013", "Bundestagswahl 2017"),
+                   Union = c(41.5, 32.9),
+                   SPD = c(25.7, 20.5),
+                   FDP = c(4.8, 10.7),
+                   Grüne = c(8.4, 8.9),
+                   Linke = c(8.6, 9.2),
+                   AfD = c(NA, 12.6))
+
+wahl$Datum <- format(as.Date(wahl$Datum, format="%d.%m.%Y"), "%d.%m.%y")
+
+names(wahl)[7] <- "Linke*"
+
+wahl_long <- subset(wahl, select = -c(Name)) %>%
+               pivot_longer(!Datum, names_to = "Partei", values_to = "Prozent") # In Longformat umwandeln
+
+wahl_long$Datum <-  format(as.Date(wahl_long$Datum, format="%d.%m.%Y"), "%d.%m.%y")
+
+wahl_long
+
 ##### Deskriptivstatistik -----
 
 
@@ -102,10 +125,55 @@ colors_alt <- c("#019ee3", "#7c7c7c", "#fbeb04", "#1ca42c", "#bd3076", "#e2001a"
 min <- as.Date("07.01.10", format = "%d.%m.%y")
 max <- as.Date("01.07.21", format = "%d.%m.%y")
 
-plot1 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei), linetype = as.factor(Institut), shape = as.factor(Institut))) +
-                  geom_point(stat = "identity", size = .8) +
-                  geom_line() +
-                  #geom_smooth(method = "loess", se = TRUE, span = 2) +
+plot1 <- ggplot(data = dataset) +
+                  geom_point(aes(x = as.Date(Datum, format = "%d.%m.%y"), 
+                                 y = Prozent, 
+                                 color = as.factor(Partei), 
+                                 shape = as.factor(Institut)), 
+                             stat = "identity", 
+                             size = .8) +
+                  geom_line(aes(x = as.Date(Datum, format = "%d.%m.%y"), 
+                                y = Prozent, 
+                                color = as.factor(Partei), 
+                                linetype = as.factor(Institut))) +
+                  geom_vline(xintercept = as.Date(wahl$Datum, format = "%d.%m.%y"), 
+                             color = "darkgrey", 
+                             linetype = "dashed") +
+                  geom_text(data = wahl, 
+                            aes(x = as.Date(Datum, format = "%d.%m.%y"),
+                                y = 49.5,
+                                label = "Ergebnis",
+                                hjust = -.225,
+                                vjust = 0,
+                                angle = 0,
+                                fontface = 2), 
+                            color = "black",
+                            size = 4) +
+                  geom_text(data = wahl, 
+                            aes(x = as.Date(Datum, format = "%d.%m.%y"),
+                                y = 47.5,
+                                label = Name,
+                                hjust = -.1,
+                                vjust = 0,
+                                angle = 0), 
+                            color = "black",
+                            size = 4) +
+                  geom_point(data = wahl_long,
+                             aes(x = as.Date(Datum, format = "%d.%m.%y"),
+                                 y = Prozent,
+                                 color = as.factor(Partei)),
+                             size = 5,
+                             shape = 15) +
+                  # geom_text(data = wahl_long, 
+                  #           aes(x = as.Date(Datum, format = "%d.%m.%y"),
+                  #               y = Prozent,
+                  #               label = Prozent,
+                  #               hjust = -.1,
+                  #               vjust = -1.5,
+                  #               angle = 0), 
+                  #           color = "black",
+                  #           size = 1.5) +
+                  # geom_smooth(method = "loess", se = TRUE, span = 2) +
                   labs(title = "Zustimmungswerte der großen politischen Parteien", 
                        subtitle = "seit Januar 2010 über verschiedene Umfrage-Institute",
                        color = "Parteien",
@@ -115,10 +183,14 @@ plot1 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
                   scale_color_manual(name = "Parteien", values = colors) +
                   theme_light() +
-                  theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
-                  theme(plot.title = element_text(size = 18, face = "bold")) +
+                  theme(axis.text.x=element_text(size=rel(.75), 
+                                                 angle=90, 
+                                                 margin = margin(b = 12))) +
+                  theme(plot.title = element_text(size = 18, 
+                                                  face = "bold")) +
                   theme(legend.position="bottom") +
-                  scale_x_date(breaks = "6 month", limits = c(min, max))
+                  scale_x_date(breaks = "6 month", 
+                               limits = c(min, max))
 
 
 ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
