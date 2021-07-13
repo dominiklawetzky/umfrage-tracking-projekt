@@ -4,8 +4,10 @@ Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 12. Juli 202
 
 Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominiklawetzky/sonntagsfrage/tree/main/SVG).
 
+Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen.
+
 ## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/125253566-d8fb1600-e2f9-11eb-9bc9-e76acebd4eba.jpg)
+![plot1](https://user-images.githubusercontent.com/75689258/125426199-158ca425-5f00-4d43-b5e5-ac9435e5c5d5.jpg)
 
 ## Plot 2
 ![plot2](https://user-images.githubusercontent.com/75689258/125252903-2b880280-e2f9-11eb-8220-1592cc28003e.jpg)
