@@ -193,7 +193,7 @@ plot1 <- ggplot(data = dataset) +
                                limits = c(min, max))
 
 
-ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
+ggsave(file="plot1.svg", plot=plot1, width=15, height=8)
 
 
 ## PLOT 2
@@ -238,7 +238,7 @@ plot3 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                        shape = "Institute",
                        x = "Datum",
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                  scale_color_manual(name = "Parteien", values = colors) +
+                  scale_color_manual(name = "Parteien", values = colors_alt) +
                   theme_light() +
                   theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                   theme(plot.title = element_text(size = 18, face = "bold")) +
@@ -264,7 +264,7 @@ plot4 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                      shape = "Institute",
                      x = "Datum",
                      caption = "github.com/dominiklawetzky/sonntagsfrage") +
-                scale_color_manual(name = "Parteien", values = colors) +
+                scale_color_manual(name = "Parteien", values = colors_alt) +
                 theme_light() +
                 theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                 theme(plot.title = element_text(size = 18, face = "bold")) +
