@@ -67,14 +67,17 @@ allensbach_long$Institut <- c("Allensbach")
 
 forschungsgruppe <- read.csv("Daten/forschungsgruppe.csv", header = TRUE, sep = c(";"), dec = ",", na.strings = "NA")
 
+
 forschungsgruppe <- subset(forschungsgruppe, select = -c(X, n, Zeitraum)) # Überflüssige Variablen löschen
 
 names(forschungsgruppe)[6] <- "Linke*" 
 
+scan(text=forschungsgruppe$FDP, dec=",", sep=".")
+
 forschungsgruppe$Piraten <- as.numeric(forschungsgruppe$Piraten)
 forschungsgruppe$Union <- as.numeric(forschungsgruppe$Union)
-forschungsgruppe$FDP <- as.numeric(forschungsgruppe$FDP)
-forschungsgruppe$AfD <- as.numeric(forschungsgruppe$AfD)
+forschungsgruppe$FDP <- as.numeric(sub(",", ".", forschungsgruppe$FDP, fixed = TRUE))
+forschungsgruppe$AfD <- as.numeric(sub(",", ".", forschungsgruppe$AfD, fixed = TRUE))
 
 forschungsgruppe$Datum <- format(as.Date(forschungsgruppe$Datum, format="%d.%m.%Y"), "%d.%m.%y") # Datumsformat
 
@@ -192,6 +195,8 @@ plot1 <- ggplot(data = dataset) +
                   scale_x_date(breaks = "6 month", 
                                limits = c(min, max))
 
+plot1
+
 
 ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
 
@@ -199,7 +204,7 @@ ggsave(file="plot1.jpg", plot=plot1, width=15, height=8)
 ## PLOT 2
 
 min <- as.Date("09.01.20", "%d.%m.%y")
-max <- as.Date("01.07.21", "%d.%m.%y")
+max <- as.Date("17.07.21", "%d.%m.%y")
 
 plot2 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y = Prozent, color = as.factor(Partei), linetype = as.factor(Institut), shape = as.factor(Institut))) +
                   geom_point(stat = "identity", size = .8) +
@@ -220,9 +225,6 @@ plot2 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                   scale_x_date(breaks = "1 month", limits = c(min, max))
 
 ggsave(file="plot2.jpg", plot=plot2, width=10, height=6)
-
-
-
 
 ## PLOT 3
 
