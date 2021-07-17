@@ -11,7 +11,7 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 ![plot1](https://user-images.githubusercontent.com/75689258/126046099-0ca57b24-0f7a-4bb5-aed8-05f36020d6d3.jpg)
 
 ## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/126046105-532eb58f-45b8-4758-81d4-0f3740ca7ac2.jpg)
+![plot2](https://user-images.githubusercontent.com/75689258/126046239-332f2771-d158-4768-b28f-e0ebeccb9af2.jpg)
 
 ## Plot 3
 ![plot3](https://user-images.githubusercontent.com/75689258/125516630-676d997b-6f50-40cb-8a4c-eb2e7ebe5b6a.jpg)
