@@ -65,7 +65,7 @@ allensbach_long$Institut <- c("Allensbach")
 
 ##### Forschungsgruppe Wahlen -----
 
-forschungsgruppe <- read.csv("Daten/forschungsgruppe.csv", header = TRUE, sep = c(";"), dec = ".", na.strings = "NA")
+forschungsgruppe <- read.csv("Daten/forschungsgruppe.csv", header = TRUE, sep = c(";"), dec = ",", na.strings = "NA")
 
 forschungsgruppe <- subset(forschungsgruppe, select = -c(X, n, Zeitraum)) # Überflüssige Variablen löschen
 
@@ -123,7 +123,7 @@ colors_alt <- c("#019ee3", "#7c7c7c", "#fbeb04", "#1ca42c", "#bd3076", "#e2001a"
 ## PLOT 1 (10 Jahre / alle Institute / alle Parteien)
 
 min <- as.Date("07.01.10", format = "%d.%m.%y")
-max <- as.Date("01.07.21", format = "%d.%m.%y")
+max <- as.Date("17.07.21", format = "%d.%m.%y")
 
 plot1 <- ggplot(data = dataset) +
                   geom_point(aes(x = as.Date(Datum, format = "%d.%m.%y"), 
@@ -174,8 +174,8 @@ plot1 <- ggplot(data = dataset) +
                   #           color = "black",
                   #           size = 1.5) +
                   # geom_smooth(method = "loess", se = TRUE, span = 2) +
-                  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-                       subtitle = "seit Januar 2010 über verschiedene Umfrage-Institute",
+                  labs(title = "Zustimmungswerte der großen politischen Parteien seit 2010", 
+                       subtitle = "Stand: 17. Juli 2021",
                        color = "Parteien",
                        linetype = "Institute",
                        shape = "Institute",
@@ -205,15 +205,15 @@ plot2 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
                   geom_point(stat = "identity", size = .8) +
                   geom_line() +
                   #geom_smooth(method = "loess", se = TRUE, span = 2) +
-                  labs(title = "Zustimmungswerte der großen politischen Parteien", 
-                       subtitle = "seit Januar 2020 über verschiedene Umfrage-Institute",
+                  labs(title = "Zustimmungswerte der großen politischen Parteien seit 2020", 
+                       subtitle = "Stand: 17. Juli 2021",
                        color = "Parteien",
                        linetype = "Institute",
                        shape = "Institute",
                        x = "Datum",
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
                   scale_color_manual(name = "Parteien", values = colors) +
-                  theme_light() +
+                  theme_fivethirtyeight() +
                   theme(axis.text.x=element_text(size=rel(.75), angle=90, margin = margin(b = 12))) +
                   theme(plot.title = element_text(size = 18, face = "bold")) +
                   theme(legend.position="bottom") +
