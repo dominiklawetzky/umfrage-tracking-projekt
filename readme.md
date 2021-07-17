@@ -1,6 +1,6 @@
 # Übersicht über die Plots
 
-Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 13. Juli 2021. 
+Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 17. Juli 2021. 
 (Leider gibt es keine zugänglichen APIs der einzelnen Institute. Die Daten müssen aufwendig händisch geladen und formatiert werden.)
 
 Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominiklawetzky/sonntagsfrage/tree/main/SVG).
@@ -8,11 +8,10 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen. Denkbar wäre eine Shiny-App, die bspw. ermöglicht, die Zustimmungswerte einer Partei über die Umfrage-Institute zu vergleichen. 
 
 ## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/125517740-42a32caa-acbe-44ea-a3ea-dbdd7b4d1d34.jpg)
-
+![plot1](https://user-images.githubusercontent.com/75689258/126046099-0ca57b24-0f7a-4bb5-aed8-05f36020d6d3.jpg)
 
 ## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/125438725-d94350a8-6e22-4bfc-97a8-b6f090c3f0f7.jpg)
+![plot2](https://user-images.githubusercontent.com/75689258/126046239-332f2771-d158-4768-b28f-e0ebeccb9af2.jpg)
 
 ## Plot 3
 ![plot3](https://user-images.githubusercontent.com/75689258/125516630-676d997b-6f50-40cb-8a4c-eb2e7ebe5b6a.jpg)
