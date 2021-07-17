@@ -182,7 +182,7 @@ plot1 <- ggplot(data = dataset) +
                        x = "Datum",
                        caption = "github.com/dominiklawetzky/sonntagsfrage") +
                   scale_color_manual(name = "Parteien", values = colors) +
-                  theme_light() +
+                  theme_fivethirtyeight() +
                   theme(axis.text.x=element_text(size=rel(.75), 
                                                  angle=90, 
                                                  margin = margin(b = 12))) +
@@ -299,3 +299,8 @@ plot5 <- ggplot(data = dataset, aes(x = as.Date(Datum, format = "%d.%m.%y"), y =
 
 ggsave(file="plot5.jpg", plot=plot5, width=15, height=6)
 
+install.packages('ggthemes')
+library(ggthemes)
+
+plot1 + theme_fivethirtyeight()
+plot1 + theme_minimal()
