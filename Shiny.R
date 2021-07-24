@@ -44,7 +44,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                      sliderInput(inputId = "f", label = "Smoother span:",
                                                  min = 0.1, max = 5, value = 0.67, step = 0.01,
                                                  animate = animationOptions(interval = 100)),
-                                     HTML("Higher values give more smoothness."))
+                                     HTML("Je größer der Wert, desto stärker die Glättung."))
 
                   ),
                   
@@ -56,7 +56,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                     tabsetPanel(type = "tabs",
                                 
                                 # TAB 1
-                                tabPanel("Infektionszahlen", 
+                                tabPanel("Übersicht", 
                                          
                                          plotOutput("plot1",
                                                     width = "100%"),
@@ -64,7 +64,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                          ),
                                 
                                 # TAB 2
-                                tabPanel("Altersstruktur", 
+                                tabPanel("Trendanalyse", 
                                          plotOutput("age",
                                                     width = "100%"),
                                          
@@ -77,7 +77,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                          plotOutput("age_line2")),
                                 
                                 # TAB 3
-                                tabPanel("Todeszahlen", 
+                                tabPanel("...", 
                                          plotOutput("deaths",
                                                     width = "100%")),
                                 
