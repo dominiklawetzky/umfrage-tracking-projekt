@@ -84,7 +84,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                     tabsetPanel(type = "tabs",
                                 
                                 # TAB 1
-                                tabPanel("?bersicht", value = 1,
+                                tabPanel("Übersicht", value = 1,
                                          
                                          plotlyOutput("plot1",
                                                       height = "auto", width = "auto"),
