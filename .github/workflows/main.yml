@@ -16,10 +16,10 @@ jobs:
         password: ${{ SECRET_PASSWORD }}
         local-dir: /srv/shiny-server/umfrage-tracking-projekt
         exclude:
-          - **/.git*
-          - **/.git*/**
-          - **/JPG/**
-          - **/SVG/**
+          - .github/workflows/**
+          - /JPG/**
+          - /SVG/**
+          - /Legancy/**
           - readme.md
           - .Rhistory
           - .RData
