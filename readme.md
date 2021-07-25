@@ -16,6 +16,10 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 
 
 
+![CleanShot 2021-07-25 at 23 28 16](https://user-images.githubusercontent.com/75689258/126914029-5105935f-78cd-4115-990c-c6dbb4643701.gif)
+
+
+
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
 - [Allensbach](https://www.ifd-allensbach.de/studien-und-berichte/sonntagsfrage/gesamt.html)
