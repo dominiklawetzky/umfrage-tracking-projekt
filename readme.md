@@ -1,5 +1,7 @@
 # Übersicht über die Plots
 
+**Achtung: Dies ist eine Beta-Version.**
+
 Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 17. Juli 2021. 
 (Leider gibt es keine zugänglichen APIs der einzelnen Institute. Die Daten müssen aufwendig händisch geladen und formatiert werden.)
 
