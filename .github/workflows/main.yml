@@ -1,0 +1,25 @@
+on: push
+name: Deploy website on push
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2
+
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: shiny.dominiklawetzky.de
+        username: dominik
+        password: ${{ SECRET_PASSWORD }}
+        local-dir: /srv/shiny-server/umfrage-tracking-projekt
+        exclude:
+          - **/.git*
+          - **/.git*/**
+          - **/JPG/**
+          - **/SVG/**
+          - readme.md
+          - .Rhistory
+          - .RData
