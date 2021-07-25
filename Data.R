@@ -66,12 +66,13 @@ forschungsgruppe_long$Prozent <- forschungsgruppe_long$Prozent*100
 
 ##### Datensätze aggregieren -----
 
-dataset <- rbind(allensbach_long, infratest_long, forschungsgruppe_long)
+dataset <- data.frame(rbind(allensbach_long, infratest_long, forschungsgruppe_long))
 
 dataset$Institut <- as.factor(dataset$Institut)
 
 dataset$Prozent <- as.numeric(round(dataset$Prozent, 0))
 
+dataset$Datum <- as.Date(dataset$Datum, format = "%d.%m.%y")
 
 
 ##### Wahlergebnisse -----
@@ -94,4 +95,4 @@ wahl_long <- subset(wahl, select = -c(Name)) %>%
 
 wahl_long$Datum <-  format(as.Date(wahl_long$Datum, format="%d.%m.%Y"), "%d.%m.%y")
 
-wahl_long
+
