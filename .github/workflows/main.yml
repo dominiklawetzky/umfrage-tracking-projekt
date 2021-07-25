@@ -13,7 +13,7 @@ jobs:
       with:
         server: shiny.dominiklawetzky.de
         username: dominik
-        password: ${{ SECRET_PASSWORD }}
+        password: ${{ secrets.SECRET_PASSWORD }}
         local-dir: /srv/shiny-server/umfrage-tracking-projekt
         exclude:
           - .github/workflows/**
