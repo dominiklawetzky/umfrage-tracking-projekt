@@ -15,4 +15,5 @@ jobs:
         username: dominik
         password: ${{ secrets.SECRET_PASSWORD }}
         protocol: ftps
+        port: 22
         server-dir: /srv/shiny-server/umfrage-tracking-projekt/
