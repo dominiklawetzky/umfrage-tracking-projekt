@@ -107,6 +107,7 @@ wahl <- data.frame(Datum = c("22.09.2013", "24.09.2017"),
                    AfD = c(NA, 12.6))
 
 wahl$Datum <- format(as.Date(wahl$Datum, format="%d.%m.%Y"), "%d.%m.%y")
+format(as.Date(wahl$Datum, format="%d.%m.%Y"), "%Y-%m-%d")
 
 names(wahl)[7] <- "Linke*"
 

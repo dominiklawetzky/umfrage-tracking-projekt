@@ -1,4 +1,4 @@
-source("Data.R", local = TRUE)
+source("data.R", local = TRUE)
 
 library(shiny)
 library(ggplot2)
@@ -16,12 +16,12 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                   sidebarPanel(
                     conditionalPanel(condition="input.tabselected == 1",
                     
-                    # ZEITINTERVALL AUSWÄHLEN
+                    # ZEITINTERVALL AUSWaeHLEN
                     dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
                                    min = "2010-01-01", max = "2021-07-20",
                                    format = "dd.mm.yyyy", language = "de", separator = "bis"),
                     
-                    # INSTITUT AUSWÄHLEN
+                    # INSTITUT AUSWaeHLEN
                     checkboxGroupInput(inputId = "institut", label = strong("Umfrage-Institute"),
                                        selected = unique(dataset$Institut),
                                        choices = unique(dataset$Institut)),
@@ -31,12 +31,12 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                        value = FALSE),
                   
                     
-                    # PARTEIEN AUSWÄHLEN
+                    # PARTEIEN AUSWaeHLEN
                     checkboxGroupInput(inputId = "partei", label = strong("Parteien"),
                                        selected = unique(dataset$Partei),
                                        choices = unique(dataset$Partei)),
                     
-                    # ERKLÄRUNG ZU LINKEN
+                    # ERKLaeRUNG ZU LINKEN
                     HTML("<em>(*) Bei Infratest bis zum 10.06.2005 nur PDS, ab Juli 2007 \"DIE LINKE\"</em><br><br>"),
                     HTML("<strong>Zuletzt aktualisiert:</strong><p>20.07.2021</p>")
                   
@@ -45,31 +45,31 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                     
                     conditionalPanel(condition="input.tabselected == 2",
                                      
-                                     # ZEITINTERVALL AUSWÄHLEN
+                                     # ZEITINTERVALL AUSWaeHLEN
                                      dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
                                                     min = "2010-01-01", max = "2021-07-20",
                                                     format = "dd.mm.yyyy", language = "de", separator = "bis"),
                                      
-                                     # INSTITUT AUSWÄHLEN
+                                     # INSTITUT AUSWaeHLEN
                                      selectInput(inputId = "institut_sel", label = strong("Umfrage-Institute"),
                                                         selected = c("Infratest"),
                                                         choices = unique(dataset$Institut)),
                                      
-                                     # PARTEI AUSWÄHLEN
+                                     # PARTEI AUSWaeHLEN
                                      selectInput(inputId = "partei_sel", label = strong("Parteien"),
                                                         selected = c("Union"),
                                                         choices = unique(dataset$Partei)),
                                      
                                      
-                                     # LOESS-GLÄTTUNG JA/NEIN
-                                     checkboxInput(inputId = "smoother", label = strong("LOESS-Glättung aktivieren"), value = FALSE),
+                                     # LOESS-GLaeTTUNG JA/NEIN
+                                     checkboxInput(inputId = "smoother", label = strong("LOESS-Glaettung aktivieren"), value = FALSE),
                                      
-                                     # SPAN DER LOESS-GLÄTTUNG
+                                     # SPAN DER LOESS-GLaeTTUNG
                                      conditionalPanel(condition = "input.smoother == true",
                                                       sliderInput(inputId = "span", label = "Spannweite:",
                                                                   min = 1, max = 10, value = 5, step = 0.01,
                                                                   animate = animationOptions(interval = 100)),
-                                                      HTML("Je größer der Wert, desto stärker die Glättung."))
+                                                      HTML("Je gr??er der Wert, desto staerker die Glaettung."))
                                      
                     )
                     
@@ -84,18 +84,18 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                     tabsetPanel(type = "tabs",
                                 
                                 # TAB 1
-                                tabPanel("Übersicht", value = 1,
+                                tabPanel("?bersicht", value = 1,
                                          
                                          plotlyOutput("plot1",
                                                       height = "auto", width = "auto"),
-                                         includeHTML("Infos.html")
+                                         includeHTML("infos.html")
                                          ),
                                 
                                 # TAB 2
                                 tabPanel("Trendanalyse", value = 2,
                                          plotlyOutput("plot2",
                                                       height = "auto", width = "auto"),
-                                         includeHTML("Trendanalyse.html")),
+                                         includeHTML("trendanalyse.html")),
                                 
                                 # TAB 3
                                 tabPanel("...", 
@@ -105,8 +105,8 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                 # TAB 4
                                 tabPanel("Info",
                                          h2("Plots herunterladen"),
-                                         p("Die Plots können über einen Rechtsklick mittels \"Speichern unter\" und ggf. unter Hinzufügen des Suffix \".png\" gespeichert werden."),
-                                         h2("Glättungsmethoden"),
+                                         p("Die Plots k?nnen ?ber einen Rechtsklick mittels \"Speichern unter\" und ggf. unter Hinzuf?gen des Suffix \".png\" gespeichert werden."),
+                                         h2("Glaettungsmethoden"),
                                          HTML("<p>lm: linear regression model <br> glm: generalized linear model <br> gam: generalized additive mode <br> loess: locally estimated scatterplot smoothing</p>")),
                                 
                                 id = "tabselected"
@@ -119,8 +119,6 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                             )
                 )
                                       
-               )
-
 
 ##### Server Logic ------
 server <- function(input, output, session) {
@@ -150,9 +148,9 @@ server <- function(input, output, session) {
         dat <- dataset %>% filter(Institut %in% input$institut_sel) %>%
           filter(Partei %in% input$partei_sel)
         
-        dat$ID <- 1:nrow(dat) # ID hinzufügen für LOESS
+        dat$ID <- 1:nrow(dat) # ID hinzuf?gen f?r LOESS
         
-        dat$smoothed <- ksmooth(dat$ID, dat$Prozent, kernel = "normal", bandwidth = input$span)$y # LOESS-Glättung anwenden
+        dat$smoothed <- ksmooth(dat$ID, dat$Prozent, kernel = "normal", bandwidth = input$span)$y # LOESS-Glaettung anwenden
         
         print(dat) # Ausgabe
       }
@@ -167,7 +165,7 @@ server <- function(input, output, session) {
    colors <- c("AfD" = "#019ee3", 
                "Andere" = "#7c7c7c", 
                "FDP" = "#fbeb04", 
-               "Grüne" = "#1ca42c", 
+               "Gr?ne" = "#1ca42c", 
                "Linke*" = "#bd3076", 
                "Piraten" = "#f39200",
                "SPD" = "#e2001a", 
@@ -194,7 +192,7 @@ server <- function(input, output, session) {
      add_lines(color = ~Partei, 
                colors = colors,
                linetype = ~as.factor(Institut)) %>%
-     layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+     layout(title = sprintf("Zustimmungswerte der gro?en politischen Parteien seit %s", format(min(), "%d.%m.%y")),
             margin = c(1,1,1,1))
    
   if(input$btw == TRUE) {
@@ -214,7 +212,7 @@ server <- function(input, output, session) {
     colors <- c("AfD" = "#019ee3", 
                 "Andere" = "#7c7c7c", 
                 "FDP" = "#fbeb04", 
-                "Grüne" = "#1ca42c", 
+                "Gr?ne" = "#1ca42c", 
                 "Linke*" = "#bd3076", 
                 "Piraten" = "#f39200",
                 "SPD" = "#e2001a", 
@@ -226,7 +224,7 @@ server <- function(input, output, session) {
         plot_ly(x = ~Datum, y = ~Prozent) %>%
         add_lines(color = ~Partei, 
                   colors = colors) %>%
-        layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+        layout(title = sprintf("Zustimmungswerte der gro?en politischen Parteien seit %s", format(min(), "%d.%m.%y")),
                margin = c(1,1,1,1),
                annotations = 
                  list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
@@ -241,8 +239,8 @@ server <- function(input, output, session) {
           plot_ly(x = ~Datum, y = ~smoothed) %>%
           add_lines(color = ~Partei, 
                     colors = colors) %>%
-          layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
-                 yaxis = list(title = "Prozent (geglättet)"),
+          layout(title = sprintf("Zustimmungswerte der gro?en politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+                 yaxis = list(title = "Prozent (geglaettet)"),
                  margin = c(1,1,1,1),
                  annotations = 
                    list(x = 1, y = -0.2, text = sprinstf("Quelle: %s", input$institut_sel), 
