@@ -243,7 +243,7 @@ server <- function(input, output, session) {
                  yaxis = list(title = "Prozent (geglaettet)"),
                  margin = c(1,1,1,1),
                  annotations = 
-                   list(x = 1, y = -0.2, text = sprinstf("Quelle: %s", input$institut_sel), 
+                   list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
                         showarrow = F, xref='paper', yref='paper', 
                         xanchor='right', yanchor='auto', xshift=0, yshift=0,
                         font=list(size=12, color="grey"))) %>%
