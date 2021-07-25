@@ -7,8 +7,6 @@ library(dplyr)
 library(scales)
 library(plotly)
 
-#TEST
-
 
 ##### UI ------
 
@@ -64,14 +62,14 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                      
                                      
                                      # LOESS-GLaeTTUNG JA/NEIN
-                                     checkboxInput(inputId = "smoother", label = strong("LOESS-Glaettung aktivieren"), value = FALSE),
+                                     checkboxInput(inputId = "smoother", label = strong("LOESS-Glättung aktivieren"), value = FALSE),
                                      
                                      # SPAN DER LOESS-GLaeTTUNG
                                      conditionalPanel(condition = "input.smoother == true",
                                                       sliderInput(inputId = "span", label = "Spannweite:",
                                                                   min = 1, max = 10, value = 5, step = 0.01,
                                                                   animate = animationOptions(interval = 100)),
-                                                      HTML("Je gr??er der Wert, desto staerker die Glaettung."))
+                                                      HTML("Je gröer der Wert, desto staerker die Glättung."))
                                      
                     )
                     
@@ -107,7 +105,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                 # TAB 4
                                 tabPanel("Info",
                                          h2("Plots herunterladen"),
-                                         p("Die Plots k?nnen ?ber einen Rechtsklick mittels \"Speichern unter\" und ggf. unter Hinzuf?gen des Suffix \".png\" gespeichert werden."),
+                                         p("Die Plots können Über einen Rechtsklick mittels \"Speichern unter\" und ggf. unter Hinzufügen des Suffix \".png\" gespeichert werden."),
                                          h2("Glaettungsmethoden"),
                                          HTML("<p>lm: linear regression model <br> glm: generalized linear model <br> gam: generalized additive mode <br> loess: locally estimated scatterplot smoothing</p>")),
                                 
@@ -150,9 +148,9 @@ server <- function(input, output, session) {
         dat <- dataset %>% filter(Institut %in% input$institut_sel) %>%
           filter(Partei %in% input$partei_sel)
         
-        dat$ID <- 1:nrow(dat) # ID hinzuf?gen f?r LOESS
+        dat$ID <- 1:nrow(dat) # ID hinzufügen für LOESS
         
-        dat$smoothed <- ksmooth(dat$ID, dat$Prozent, kernel = "normal", bandwidth = input$span)$y # LOESS-Glaettung anwenden
+        dat$smoothed <- ksmooth(dat$ID, dat$Prozent, kernel = "normal", bandwidth = input$span)$y # LOESS-Glättung anwenden
         
         print(dat) # Ausgabe
       }
@@ -194,7 +192,7 @@ server <- function(input, output, session) {
      add_lines(color = ~Partei, 
                colors = colors,
                linetype = ~as.factor(Institut)) %>%
-     layout(title = sprintf("Zustimmungswerte der gro?en politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+     layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
             margin = c(1,1,1,1))
    
   if(input$btw == TRUE) {
@@ -226,7 +224,7 @@ server <- function(input, output, session) {
         plot_ly(x = ~Datum, y = ~Prozent) %>%
         add_lines(color = ~Partei, 
                   colors = colors) %>%
-        layout(title = sprintf("Zustimmungswerte der gro?en politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+        layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
                margin = c(1,1,1,1),
                annotations = 
                  list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
@@ -241,7 +239,7 @@ server <- function(input, output, session) {
           plot_ly(x = ~Datum, y = ~smoothed) %>%
           add_lines(color = ~Partei, 
                     colors = colors) %>%
-          layout(title = sprintf("Zustimmungswerte der gro?en politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+          layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
                  yaxis = list(title = "Prozent (geglaettet)"),
                  margin = c(1,1,1,1),
                  annotations = 
