@@ -10,7 +10,11 @@ Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trend
 ## Demonstration
 <img width="1507" alt="Plot1" src="https://user-images.githubusercontent.com/75689258/126913880-ba5f5efc-7ac9-4607-98a1-d56f15754939.png">
 
-![CleanShot 2021-07-25 at 23 21 05](https://user-images.githubusercontent.com/75689258/126913887-90595c66-5f72-4de1-8866-4346618991b2.gif)
+![CleanShot 2021-07-25 at 23 24 42](https://user-images.githubusercontent.com/75689258/126913932-31bc3ab6-69e6-43fc-bc55-1fa4d32c22d1.gif)
+
+![CleanShot 2021-07-25 at 23 25 41](https://user-images.githubusercontent.com/75689258/126913962-178500f6-89ab-4cc1-b706-30f675e03ce4.gif)
+
+
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
