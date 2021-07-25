@@ -13,6 +13,6 @@ jobs:
           username: 'dominik'
           server: 'shiny.dominiklawetzky.de'
           ssh_private_key: ${{ secrets.SSH }} 
-          local_path: './static/*'
+          local_path: '/'
           remote_path: '/srv/shiny-server/umfrage-tracking-projekt/'
           args: '-o ConnectTimeout=5'
