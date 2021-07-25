@@ -1,15 +1,18 @@
-name: FTP Deployer
-  uses: sand4rt/ftp-deployer@v1.3
-  with:
-    sftp: true # optional
-    host: sftp.shiny.dominiklawetzky.de # e.g. ftp.host.com or sftp.host.com (without ftp:// or ftps://)
-    port: 21 # optional, default is: 21
-    username: dominik
-    password: ${{ secrets.SECRET_PASSWORD }} 
-    remote_folder: '/srv/shiny-server/umfrage-tracking-projekt/'
-    local_folder: dist # optional, local path, default is: dist
-    cleanup: false # optional, remove existing files inside FTP remote folder
-    include: [] # optional, e.g. ['dist']
-    exclude: [] # optional, e.g. ['node_modules/**', '.git/**', '*.env']
-    pasive: true # optional
+on: [push]
 
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'root'
+          server: 'shiny.dominiklawetzky.de'
+          ssh_private_key: ${{ secrets.SSH }} 
+          local_path: './static/*'
+          remote_path: '/srv/shiny-server/umfrage-tracking-projekt/'
+          args: '-o ConnectTimeout=5'
