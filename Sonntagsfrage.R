@@ -167,16 +167,6 @@ plot1 <- ggplot(data = dataset) +
                                  color = as.factor(Partei)),
                              size = 5,
                              shape = 15) +
-                  # geom_text(data = wahl_long, 
-                  #           aes(x = as.Date(Datum, format = "%d.%m.%y"),
-                  #               y = Prozent,
-                  #               label = Prozent,
-                  #               hjust = -.1,
-                  #               vjust = -1.5,
-                  #               angle = 0), 
-                  #           color = "black",
-                  #           size = 1.5) +
-                  # geom_smooth(method = "loess", se = TRUE, span = 2) +
                   labs(title = "Zustimmungswerte der großen politischen Parteien seit 2010", 
                        subtitle = "Stand: 17. Juli 2021",
                        color = "Parteien",
