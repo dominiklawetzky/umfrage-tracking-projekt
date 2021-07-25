@@ -14,4 +14,5 @@ jobs:
         server: shiny.dominiklawetzky.de
         username: dominik
         password: ${{ secrets.SECRET_PASSWORD }}
+        protocol: ftps
         local-dir: /srv/shiny-server/umfrage-tracking-projekt/
