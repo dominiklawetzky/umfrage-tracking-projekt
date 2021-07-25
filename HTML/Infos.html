@@ -1,0 +1,29 @@
+<html>
+
+<body>
+
+<p>Das Umfrage-Tacking-Projekt basiert auf <b>R Shiny</b>. Der gesamte Code ist frei und offen auf <a href="https://github.com/dominiklawetzky/sonntagsfrage">GitHub</a>. Aufgrund fehlender Schnittstellen der Umfrage-Institute müssen die Daten manuell eingepflegt und in lesbare Datensätze umgewandelt werden. Der Hauptdatensatz <em>dataset</em> liegt in Longformat vor:</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">source</span><span class="hl std">(</span><span class="hl str">&quot;Data.R&quot;</span><span class="hl std">,</span> <span class="hl kwc">local</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning in file(filename, &quot;r&quot;, encoding = encoding): kann Datei 'Data.R' nicht
+## öffnen: No such file or directory
+</pre></div>
+<div class="error"><pre class="knitr r">## Error in file(filename, &quot;r&quot;, encoding = encoding): kann Verbindung nicht öffnen
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">head</span><span class="hl std">(dataset)</span>
+</pre></div>
+<div class="error"><pre class="knitr r">## Error in head(dataset): Objekt 'dataset' nicht gefunden
+</pre></div>
+</div></div>
+
+<p>You can also embed plots, for example:</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(cars)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+
+<img src="HTML/Image1.png" alt="Plotly-Toolbar" width="200">
+
+</body>
+</html>

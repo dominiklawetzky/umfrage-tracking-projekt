@@ -1,0 +1,42 @@
+<html>
+
+<body>
+
+<p>Das Umfrage-Tacking-Projekt basiert auf <b>R Shiny</b>. Der gesamte Code ist frei und offen auf <a href="https://github.com/dominiklawetzky/sonntagsfrage">GitHub</a>. Aufgrund fehlender Schnittstellen der Umfrage-Institute müssen die Daten manuell eingepflegt und in lesbare Datensätze umgewandelt werden. Der Hauptdatensatz <em>dataset</em> liegt in Longformat vor:</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">head</span><span class="hl std">(dataset)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##        Datum Partei Prozent   Institut
+## 1 2021-06-09  Union      30 Allensbach
+## 2 2021-06-09    SPD      17 Allensbach
+## 3 2021-06-09    FDP      11 Allensbach
+## 4 2021-06-09  Grüne      22 Allensbach
+## 5 2021-06-09 Linke*       7 Allensbach
+## 6 2021-06-09    AfD       9 Allensbach
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">summary</span><span class="hl std">(dataset)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##      Datum               Partei             Prozent     
+##  Min.   :2000-01-07   Length:7836        Min.   : 2.00  
+##  1st Qu.:2007-01-11   Class :character   1st Qu.: 6.00  
+##  Median :2012-11-30   Mode  :character   Median :10.00  
+##  Mean   :2012-03-14                      Mean   :15.32  
+##  3rd Qu.:2017-01-27                      3rd Qu.:25.00  
+##  Max.   :2021-07-16                      Max.   :51.00  
+##                                          NA's   :1337   
+##                     Institut   
+##  Allensbach             : 980  
+##  Forschungsgruppe Wahlen:1784  
+##  Infratest              :5072  
+##                                
+##                                
+##                                
+## 
+</pre></div>
+</div></div>
+
+<strong>Nutzen Sie die Plotly-Toolbar, die oben rechts im Plot angezeigt wird, sobald Sie Ihre Maus auf den Plot bewegen.</strong>
+
+
+</body>
+</html>
