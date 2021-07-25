@@ -15,10 +15,3 @@ jobs:
         username: dominik
         password: ${{ secrets.SECRET_PASSWORD }}
         local-dir: /srv/shiny-server/umfrage-tracking-projekt/
-        exclude:
-          - JPG/**
-          - SVG/**
-          - Legancy/**
-          - readme.md
-          - .Rhistory
-          - .RData
