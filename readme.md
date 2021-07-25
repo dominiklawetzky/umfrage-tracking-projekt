@@ -7,22 +7,10 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 
 Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen. Denkbar wäre eine Shiny-App, die bspw. ermöglicht, die Zustimmungswerte einer Partei über die Umfrage-Institute zu vergleichen. 
 
-## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/126046477-cdc0f2b9-ec3d-4e7c-98b9-2cb66a9c0b66.jpg)
+## Demonstration
+<img width="1507" alt="Plot1" src="https://user-images.githubusercontent.com/75689258/126913880-ba5f5efc-7ac9-4607-98a1-d56f15754939.png">
 
-## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/126046479-642116cd-aa83-49a9-91c3-dc57a607e2bf.jpg)
-
-## Plot 3
-![plot3](https://user-images.githubusercontent.com/75689258/125516630-676d997b-6f50-40cb-8a4c-eb2e7ebe5b6a.jpg)
-
-
-## Plot 4
-![plot4](https://user-images.githubusercontent.com/75689258/125516645-2984d19d-3d4f-47db-b3d1-e3f21afc9a81.jpg)
-
-
-## Plot 5
-![plot5](https://user-images.githubusercontent.com/75689258/125438764-59d3f56a-3867-4132-916b-c253fa53b9b2.jpg)
+![CleanShot 2021-07-25 at 23 21 05](https://user-images.githubusercontent.com/75689258/126913887-90595c66-5f72-4de1-8866-4346618991b2.gif)
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
