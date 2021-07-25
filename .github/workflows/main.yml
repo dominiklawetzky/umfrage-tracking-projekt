@@ -1,19 +1,18 @@
-on: push
-name: Deploy website on push
-jobs:
-  web-deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: Get latest code
-      uses: actions/checkout@v2
+on: [push]
 
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        server: shiny.dominiklawetzky.de
-        username: dominik
-        password: ${{ secrets.SECRET_PASSWORD }}
-        protocol: ftps
-        port: 22
-        server-dir: /srv/shiny-server/umfrage-tracking-projekt/
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: dominik
+          server: shiny.dominiklawetzky.de
+          ssh_private_key: ${{ secrets.SECRET_PASSWORD }} 
+          local_path: 
+          remote_path: '/srv/shiny-server/umfrage-tracking-projekt/'
+          args: '-o ConnectTimeout=5'
