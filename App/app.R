@@ -7,6 +7,7 @@ library(dplyr)
 library(scales)
 library(plotly)
 
+# Version 0.4.1
 
 ##### UI ------
 
