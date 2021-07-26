@@ -1,5 +1,7 @@
 # Übersicht über die Plots
 
+**Achtung: Dies ist eine Beta-Version.**
+
 Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 17. Juli 2021. 
 (Leider gibt es keine zugänglichen APIs der einzelnen Institute. Die Daten müssen aufwendig händisch geladen und formatiert werden.)
 
@@ -7,22 +9,18 @@ Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominik
 
 Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen. Denkbar wäre eine Shiny-App, die bspw. ermöglicht, die Zustimmungswerte einer Partei über die Umfrage-Institute zu vergleichen. 
 
-## Plot 1
-![plot1](https://user-images.githubusercontent.com/75689258/126046477-cdc0f2b9-ec3d-4e7c-98b9-2cb66a9c0b66.jpg)
-
-## Plot 2
-![plot2](https://user-images.githubusercontent.com/75689258/126046479-642116cd-aa83-49a9-91c3-dc57a607e2bf.jpg)
-
-## Plot 3
-![plot3](https://user-images.githubusercontent.com/75689258/125516630-676d997b-6f50-40cb-8a4c-eb2e7ebe5b6a.jpg)
+## Demonstration
+![CleanShot 2021-07-25 at 23 24 42](https://user-images.githubusercontent.com/75689258/126913932-31bc3ab6-69e6-43fc-bc55-1fa4d32c22d1.gif)
 
 
-## Plot 4
-![plot4](https://user-images.githubusercontent.com/75689258/125516645-2984d19d-3d4f-47db-b3d1-e3f21afc9a81.jpg)
+
+![CleanShot 2021-07-25 at 23 25 41](https://user-images.githubusercontent.com/75689258/126913962-178500f6-89ab-4cc1-b706-30f675e03ce4.gif)
 
 
-## Plot 5
-![plot5](https://user-images.githubusercontent.com/75689258/125438764-59d3f56a-3867-4132-916b-c253fa53b9b2.jpg)
+
+![CleanShot 2021-07-25 at 23 28 16](https://user-images.githubusercontent.com/75689258/126914029-5105935f-78cd-4115-990c-c6dbb4643701.gif)
+
+
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
