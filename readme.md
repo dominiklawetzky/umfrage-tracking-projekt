@@ -57,7 +57,9 @@ packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny")
 ```
 
 **Ich habe eine Idee, wie das Umfrage-Tracking-Tool noch besser wird. Was soll ich tun?**
-Du kannst [hier](https://github.com/dominiklawetzky/umfrage-tracking-projekt/issues) ein _Issue_ eröffnen. Da ich dieses Projekt in meiner Freizeit voranbringe, kann ich jedoch nicht versprechen, dass jede Feature-Request zügig umgesetzt wird. Wenn du selbst anpacken möchtest, freue ich mich. Bitte teste deine Änderungen gründlich, bevor du die Pull Request machst.
+Du kannst [hier](https://github.com/dominiklawetzky/umfrage-tracking-projekt/issues) ein _Issue_ eröffnen. 
+
+Da ich dieses Projekt in meiner Freizeit voranbringe, kann ich jedoch nicht versprechen, dass jede Feature-Request zügig umgesetzt wird. Wenn du selbst anpacken möchtest, freue ich mich. Bitte teste deine Änderungen gründlich, bevor du die Pull Request machst.
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
