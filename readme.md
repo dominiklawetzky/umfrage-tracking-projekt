@@ -1,26 +1,63 @@
-# Übersicht über die Plots
+# Umfrage-Tracking-Tool 📈
 
+## Hinweise
 **Achtung: Dies ist eine Beta-Version.**
 
 Die Daten aktualisieren sich nicht automatisch. Aktueller Stand ist 17. Juli 2021. 
-(Leider gibt es keine zugänglichen APIs der einzelnen Institute. Die Daten müssen aufwendig händisch geladen und formatiert werden.)
+(Leider gibt es keine zugänglichen APIs der einzelnen Institute. Daher müssen die Daten aufwendig händisch geladen und formatiert werden.)
 
-Hier finden sich alle Plots als [vektorbasierte SVGs](https://github.com/dominiklawetzky/sonntagsfrage/tree/main/SVG).
+Die Shiny-App stellt Umfrage-Daten von Infratest-Dimap, Allensbach und der Forschungsgruppe Wahlen für (mindestens) die letzten zehn Jahre dar. In der _Übersicht_ können die Unmfrage-Daten betrachtet werden; dafür stehen mehere Filter – z. B. nach Umfrage-Institut – zur Verfügung. Ebensfalls sind die Plots interaktiv. Unter dem Tab _Trendanalyse_ können aktuell die Umfrage-Daten zu einer Partei und eines Instituts geglättet dargestellt werden.
 
-Mittelfristiges Ziel ist, über Regressionsmodelle institutsübergreifende Trends zu ermitteln und institutsspezifische Schwankungen einzuordnen. Denkbar wäre eine Shiny-App, die bspw. ermöglicht, die Zustimmungswerte einer Partei über die Umfrage-Institute zu vergleichen. 
+## FAQ
 
-## Demonstration
-![CleanShot 2021-07-25 at 23 24 42](https://user-images.githubusercontent.com/75689258/126913932-31bc3ab6-69e6-43fc-bc55-1fa4d32c22d1.gif)
+**Wie hole ich das meiste aus den Plots heraus?**
+Dafür können zunächst die Filter-Tools an der rechten Seite bzw. oben verwendet werden. Dort kannst du bspw. Parteien oder Daten eines Umfrage-Instituts ausblenden. Außerdem kannst du zwei Marker für die vergangenen zwei Bundestagswahlen anzeigen lassen.
 
+<p align="center">
+<img src="Screenshots/Filter.png" alt="alt text" width="300px">
+  </p>
 
-
-![CleanShot 2021-07-25 at 23 25 41](https://user-images.githubusercontent.com/75689258/126913962-178500f6-89ab-4cc1-b706-30f675e03ce4.gif)
-
-
-
-![CleanShot 2021-07-25 at 23 28 16](https://user-images.githubusercontent.com/75689258/126914029-5105935f-78cd-4115-990c-c6dbb4643701.gif)
+Darüber hinaus sind die Plots interaktiv. Sobald du mit deiner Maus über den Plot fährst oder ihn anklickst, erscheint in der oberen rechten Ecke die [Plotly](https://plotly.com)-Toolbar.
 
 
+<p align="center">
+<img src="Screenshots/Plotly-Toolbar.png" alt="alt text" width="400px">
+  </p>
+
+
+Die Funktionen der Toolbar lassen sich wie folgt zusammenfassen (v. l. n. r.):
+- Plot als Bild herunterladen
+- In einen Bereich reinzoomen
+- Den Plot entlang der Achsen bewegen
+- Zentriert vergrößern
+- Zentriert verkleinern
+- Automatische Skalierung (ursprüngliche Ansicht)
+- Achsen zurücksetzen (ursprüngliche Achsenabschnitte)
+- (Keinen Nutzen für diesen Plot)
+- Detaillierte Datendarstellung des jeweilig nächsten Datenpunkts
+- Detaillierte Datendarstellung aller Datenpunkte zum jeweiligen x-Achsenabschnitt (insb. zum Vergleich)
+
+**Woher stammen die Daten?**
+Die Daten stammen von den offiziellen Websites der Umfrage-Instititute und im Fall der Forschungsgruppe Wahlen von der Seite [wahlrecht.de](https://www.wahlrecht.de/). Von dort übertrage ich die Daten teils händisch und mit dem praktischen _R_-Addon [Datapasta](https://milesmcbain.github.io/datapasta/). 
+
+**Welche Programme wurden verwendet?**
+Das Umfrage-Tracking-Tool basiert auf [Shiny](https://shiny.rstudio.com). Dahinter steckt _R_ – eine Programmiersprache, die vor allem im Bereich Statistik und Data Science verwendet wird.
+
+Die wichtigsten verwendeten Tool sind:
+- R Studio
+- R Shiny
+- Shiny Server
+- Plotly
+- Datapasta
+
+Eine Liste aller verwendeten Pakete findet sich in der [Präambel](https://github.com/dominiklawetzky/umfrage-tracking-projekt/blob/main/preamble.R):
+
+```R
+packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny")
+```
+
+**Ich habe eine Idee, wie das Umfrage-Tracking-Tool noch besser wird. Was soll ich tun?**
+Du kannst [hier](https://github.com/dominiklawetzky/umfrage-tracking-projekt/issues) ein _Issue_ eröffnen. Da ich dieses Projekt in meiner Freizeit voranbringe, kann ich jedoch nicht versprechen, dass jede Feature-Request zügig umgesetzt wird. Wenn du selbst anpacken möchtest, freue ich mich. Bitte teste deine Änderungen gründlich, bevor du die Pull Request machst.
 
 ## Datenquellen
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
