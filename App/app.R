@@ -11,6 +11,14 @@ library(plotly)
 ##### UI ------
 
 ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
+                
+                tags$head(
+                  tags$style(HTML("
+                    <!-- Place this tag in your head or just before your close body tag. -->
+                    <script async defer src=\"https://buttons.github.io/buttons.js\"></script>
+                    }"))
+                ),
+                
                 titlePanel("Umfrage-Tracking-Projekt"),
       
                   sidebarPanel(
@@ -39,6 +47,9 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                     # ERKLaeRUNG ZU LINKEN
                     HTML("<em>(*) Bei Infratest bis zum 10.06.2005 nur PDS, ab Juli 2007 \"DIE LINKE\"</em><br><br>"),
                     HTML("<strong>Zuletzt aktualisiert:</strong><p>20.07.2021</p>")
+                    HTML("<a class=\"github-button\" href=\"https://github.com/dominiklawetzky/umfrage-tracking-projekt\" data-icon=\"octicon-star\" 
+                        data-size=\"large\" data-show-count=\"true\" 
+                        aria-label=\"Star dominiklawetzky/umfrage-tracking-projekt on GitHub\">Star</a>")
                   
                     
                     ),
