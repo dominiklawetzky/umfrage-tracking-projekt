@@ -14,14 +14,14 @@ Die Shiny-App stellt Umfrage-Daten von Infratest-Dimap, Allensbach und der Forsc
 Dafür können zunächst die Filter-Tools an der rechten Seite bzw. oben verwendet werden. Dort kannst du bspw. Parteien oder Daten eines Umfrage-Instituts ausblenden. Außerdem kannst du zwei Marker für die vergangenen zwei Bundestagswahlen anzeigen lassen.
 
 <p align="center">
-<img src="Screenshots/Filter.png" alt="alt text" width="300px">
+<img src="HTML/Screenshots/Filter.png" alt="alt text" width="300px">
   </p>
 
 Darüber hinaus sind die Plots interaktiv. Sobald du mit deiner Maus über den Plot fährst oder ihn anklickst, erscheint in der oberen rechten Ecke die [Plotly](https://plotly.com)-Toolbar.
 
 
 <p align="center">
-<img src="Screenshots/Plotly-Toolbar.png" alt="alt text" width="400px">
+<img src="HTML/Screenshots/Plotly-Toolbar.png" alt="alt text" width="400px">
   </p>
 
 
