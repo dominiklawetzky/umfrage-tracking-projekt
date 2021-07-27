@@ -110,7 +110,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                                   width = "100%")),
                               
                               # TAB 4
-                              tabPanel(includeHTML("HTML/info-tab.html")),
+                              tabPanel("Info", value = 4, includeHTML("HTML/info-tab.html")),
                               
                               id = "tabselected"
                               
