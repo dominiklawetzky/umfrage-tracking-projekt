@@ -105,9 +105,9 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                        includeHTML("HTML/trendanalyse.html")),
                               
                               # TAB 3
-                              tabPanel("...", 
-                                       plotOutput("deaths",
-                                                  width = "100%")),
+                              # tabPanel("...", 
+                              #          plotOutput("deaths",
+                              #                     width = "100%")),
                               
                               # TAB 4
                               tabPanel("Info", value = 4, includeHTML("HTML/info-tab.html")),
