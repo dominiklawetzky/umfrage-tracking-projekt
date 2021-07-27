@@ -1,4 +1,4 @@
-setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage/App")
+#setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage/App")
 rm(list = ls())
 
 
