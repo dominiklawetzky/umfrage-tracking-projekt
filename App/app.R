@@ -16,111 +16,112 @@ library(shinythemes)
 ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                 
                 titlePanel("Umfrage-Tracking-Projekt"),
-      
-                  sidebarPanel(
-                    conditionalPanel(condition="input.tabselected == 1",
-                    
-                    # ZEITINTERVALL AUSWÄHLEN
-                    dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
-                                   min = "2010-01-01", max = "2021-07-20",
-                                   format = "dd.mm.yyyy", language = "de", separator = "bis"),
-                    
-                    # INSTITUT AUSWÄHLEN
-                    checkboxGroupInput(inputId = "institut", label = strong("Umfrage-Institute"),
-                                       selected = unique(dataset$Institut),
-                                       choices = unique(dataset$Institut)),
-                    
-                    # BUNDESTAGSWAHL ANZEIGEN
-                    checkboxInput(inputId = "btw", label = strong("Bundestagswahlen"),
-                                       value = FALSE),
-                  
-                    
-                    # PARTEIEN AUSWÄHLEN
-                    checkboxGroupInput(inputId = "partei", label = strong("Parteien"),
-                                       selected = unique(dataset$Partei),
-                                       choices = unique(dataset$Partei)),
-                    
-                    # ERKLaeRUNG ZU LINKEN
-                    HTML("<em>(*) Bei Infratest bis zum 10.06.2005 nur PDS, ab Juli 2007 \"DIE LINKE\"</em><br><br>"),
-                    HTML("<strong>Zuletzt aktualisiert:</strong><p>20.07.2021</p>"),
-                    HTML("<a class=\"github-button\" href=\"https://github.com/dominiklawetzky/umfrage-tracking-projekt\" data-icon=\"octicon-star\" 
+                
+                sidebarPanel(
+                  conditionalPanel(condition="input.tabselected == 1",
+                                   
+                                   # ZEITINTERVALL AUSWaeHLEN
+                                   dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
+                                                  min = "2010-01-01", max = "2021-07-20",
+                                                  format = "dd.mm.yyyy", language = "de", separator = "bis"),
+                                   
+                                   # INSTITUT AUSWaeHLEN
+                                   checkboxGroupInput(inputId = "institut", label = strong("Umfrage-Institute"),
+                                                      selected = unique(dataset$Institut),
+                                                      choices = unique(dataset$Institut)),
+                                   
+                                   # BUNDESTAGSWAHL ANZEIGEN
+                                   checkboxInput(inputId = "btw", label = strong("Bundestagswahlen"),
+                                                 value = FALSE),
+                                   
+                                   
+                                   # PARTEIEN AUSWaeHLEN
+                                   checkboxGroupInput(inputId = "partei", label = strong("Parteien"),
+                                                      selected = unique(dataset$Partei),
+                                                      choices = unique(dataset$Partei)),
+                                   
+                                   # ERKLaeRUNG ZU LINKEN
+                                   HTML("<em>(*) Bei Infratest bis zum 10.06.2005 nur PDS, ab Juli 2007 \"DIE LINKE\"</em><br><br>"),
+                                   HTML("<strong>Zuletzt aktualisiert:</strong><p>20.07.2021</p>"),
+                                   HTML("<a class=\"github-button\" href=\"https://github.com/dominiklawetzky/umfrage-tracking-projekt\" data-icon=\"octicon-star\" 
                         data-size=\"large\" data-show-count=\"true\" 
                         aria-label=\"Star dominiklawetzky/umfrage-tracking-projekt on GitHub\">GitHub Repository</a>")
-                  
-                    
-                    ),
-                    
-                    conditionalPanel(condition="input.tabselected == 2",
-                                     
-                                     # ZEITINTERVALL AUSWÄHLEN
-                                     dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
-                                                    min = "2010-01-01", max = "2021-07-20",
-                                                    format = "dd.mm.yyyy", language = "de", separator = "bis"),
-                                     
-                                     # INSTITUT AUSWÄHLEN
-                                     selectInput(inputId = "institut_sel", label = strong("Umfrage-Institute"),
-                                                        selected = c("Infratest"),
-                                                        choices = unique(dataset$Institut)),
-                                     
-                                     # PARTEI AUSWÄHLEN
-                                     selectInput(inputId = "partei_sel", label = strong("Parteien"),
-                                                        selected = c("Union"),
-                                                        choices = unique(dataset$Partei)),
-                                     
-                                     
-                                     # LOESS-GLÄTTUNG JA/NEIN
-                                     checkboxInput(inputId = "smoother", label = strong("LOESS-Glättung aktivieren"), value = FALSE),
-                                     
-                                     # SPAN DER LOESS-GLÄTTUNG
-                                     conditionalPanel(condition = "input.smoother == true",
-                                                      sliderInput(inputId = "span", label = "Spannweite:",
-                                                                  min = 1, max = 10, value = 5, step = 0.01,
-                                                                  animate = animationOptions(interval = 100)),
-                                                      HTML("Je gröer der Wert, desto staerker die Glättung."))
-                                     
-                    )
-                    
-
+                                   
+                                   
                   ),
                   
-        
-                  # OUTPUT-PANEL
+                  conditionalPanel(condition="input.tabselected == 2",
+                                   
+                                   # ZEITINTERVALL AUSWaeHLEN
+                                   dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
+                                                  min = "2010-01-01", max = "2021-07-20",
+                                                  format = "dd.mm.yyyy", language = "de", separator = "bis"),
+                                   
+                                   # INSTITUT AUSWaeHLEN
+                                   selectInput(inputId = "institut_sel", label = strong("Umfrage-Institute"),
+                                               selected = c("Infratest"),
+                                               choices = unique(dataset$Institut)),
+                                   
+                                   # PARTEI AUSWaeHLEN
+                                   selectInput(inputId = "partei_sel", label = strong("Parteien"),
+                                               selected = c("Union"),
+                                               choices = unique(dataset$Partei)),
+                                   
+                                   
+                                   # LOESS-GLaeTTUNG JA/NEIN
+                                   checkboxInput(inputId = "smoother", label = strong("LOESS-Glättung aktivieren"), value = FALSE),
+                                   
+                                   # SPAN DER LOESS-GLaeTTUNG
+                                   conditionalPanel(condition = "input.smoother == true",
+                                                    sliderInput(inputId = "span", label = "Spannweite:",
+                                                                min = 1, max = 10, value = 5, step = 0.01,
+                                                                animate = animationOptions(interval = 100)),
+                                                    HTML("Je gröer der Wert, desto staerker die Glättung."))
+                                   
+                  )
                   
-                  mainPanel(
-                    
-                    tabsetPanel(type = "tabs",
-                                
-                                # TAB 1
-                                tabPanel("Übersicht", value = 1,
-                                         
-                                         plotlyOutput("plot1",
-                                                      height = "auto", width = "auto"),
-                                         includeHTML("HTML/infos.html")),
-                                
-                                # TAB 2
-                                tabPanel("Trendanalyse", value = 2,
-                                         plotlyOutput("plot2",
-                                                      height = "auto", width = "auto"),
-                                         includeHTML("HTML/trendanalyse.html")),
-                                
-                                # TAB 3
-                                tabPanel("...", value = 3,
-                                         plotOutput("deaths",
-                                                    width = "100%")),
-                                
-                                # TAB 4
-                                tabPanel("Info", value = 4,
-                                         includeHTML("HTML/info-tab.html")),
-                                
-                                id = "tabselected"
-                                
-                               ),
-                    
-                    # FOOTER MIT IMPRESSUM
-                    tags$footer(HTML("<a href=\"https://dominiklawetzky.de/impressum\">Impressum</a>"), align = "center", style ="margin-bottom:1em; margin-top: 2em")
-                    
-                            )
+                  
+                ),
+                
+                
+                # OUTPUT-PANEL
+                
+                mainPanel(
+                  
+                  tabsetPanel(type = "tabs",
+                              
+                              # TAB 1
+                              tabPanel("Übersicht", value = 1,
+                                       
+                                       plotlyOutput("plot1",
+                                                    height = "auto", width = "auto"),
+                                       includeHTML("HTML/infos.html")
+                              ),
+                              
+                              # TAB 2
+                              tabPanel("Trendanalyse", value = 2,
+                                       plotlyOutput("plot2",
+                                                    height = "auto", width = "auto"),
+                                       includeHTML("HTML/trendanalyse.html")),
+                              
+                              # TAB 3
+                              tabPanel("...", 
+                                       plotOutput("deaths",
+                                                  width = "100%")),
+                              
+                              # TAB 4
+                              tabPanel(includeHTML("HTML/info-tab.html")),
+                              
+                              id = "tabselected"
+                              
+                  ),
+                  
+                  # FOOTER MIT IMPRESSUM
+                  tags$footer(HTML("<a href=\"https://dominiklawetzky.de/impressum\">Impressum</a>"), align = "center", style ="margin-bottom:1em; margin-top: 2em")
+                  
                 )
+)
+
                                       
 
 ##### Server Logic ------
