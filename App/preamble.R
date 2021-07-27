@@ -1,5 +1,5 @@
 #setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage/App")
-rm(list = ls())
+#rm(list = ls())
 
 
 ## PACKAGE NAMEN
