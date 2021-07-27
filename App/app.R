@@ -6,6 +6,8 @@ library(ggthemes)
 library(dplyr)
 library(scales)
 library(plotly)
+library(shinythemes)
+
 
 # Version 0.4.1
 
@@ -18,12 +20,12 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                   sidebarPanel(
                     conditionalPanel(condition="input.tabselected == 1",
                     
-                    # ZEITINTERVALL AUSWaeHLEN
+                    # ZEITINTERVALL AUSWÄHLEN
                     dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
                                    min = "2010-01-01", max = "2021-07-20",
                                    format = "dd.mm.yyyy", language = "de", separator = "bis"),
                     
-                    # INSTITUT AUSWaeHLEN
+                    # INSTITUT AUSWÄHLEN
                     checkboxGroupInput(inputId = "institut", label = strong("Umfrage-Institute"),
                                        selected = unique(dataset$Institut),
                                        choices = unique(dataset$Institut)),
@@ -33,7 +35,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                        value = FALSE),
                   
                     
-                    # PARTEIEN AUSWaeHLEN
+                    # PARTEIEN AUSWÄHLEN
                     checkboxGroupInput(inputId = "partei", label = strong("Parteien"),
                                        selected = unique(dataset$Partei),
                                        choices = unique(dataset$Partei)),
@@ -50,26 +52,26 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                     
                     conditionalPanel(condition="input.tabselected == 2",
                                      
-                                     # ZEITINTERVALL AUSWaeHLEN
+                                     # ZEITINTERVALL AUSWÄHLEN
                                      dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
                                                     min = "2010-01-01", max = "2021-07-20",
                                                     format = "dd.mm.yyyy", language = "de", separator = "bis"),
                                      
-                                     # INSTITUT AUSWaeHLEN
+                                     # INSTITUT AUSWÄHLEN
                                      selectInput(inputId = "institut_sel", label = strong("Umfrage-Institute"),
                                                         selected = c("Infratest"),
                                                         choices = unique(dataset$Institut)),
                                      
-                                     # PARTEI AUSWaeHLEN
+                                     # PARTEI AUSWÄHLEN
                                      selectInput(inputId = "partei_sel", label = strong("Parteien"),
                                                         selected = c("Union"),
                                                         choices = unique(dataset$Partei)),
                                      
                                      
-                                     # LOESS-GLaeTTUNG JA/NEIN
+                                     # LOESS-GLÄTTUNG JA/NEIN
                                      checkboxInput(inputId = "smoother", label = strong("LOESS-Glättung aktivieren"), value = FALSE),
                                      
-                                     # SPAN DER LOESS-GLaeTTUNG
+                                     # SPAN DER LOESS-GLÄTTUNG
                                      conditionalPanel(condition = "input.smoother == true",
                                                       sliderInput(inputId = "span", label = "Spannweite:",
                                                                   min = 1, max = 10, value = 5, step = 0.01,
@@ -93,26 +95,22 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                          
                                          plotlyOutput("plot1",
                                                       height = "auto", width = "auto"),
-                                         includeHTML("infos.html")
-                                         ),
+                                         includeHTML("HTML/infos.html")),
                                 
                                 # TAB 2
                                 tabPanel("Trendanalyse", value = 2,
                                          plotlyOutput("plot2",
                                                       height = "auto", width = "auto"),
-                                         includeHTML("trendanalyse.html")),
+                                         includeHTML("HTML/trendanalyse.html")),
                                 
                                 # TAB 3
-                                tabPanel("...", 
+                                tabPanel("...", value = 3,
                                          plotOutput("deaths",
                                                     width = "100%")),
                                 
                                 # TAB 4
-                                tabPanel("Info",
-                                         h2("Plots herunterladen"),
-                                         p("Die Plots können Über einen Rechtsklick mittels \"Speichern unter\" und ggf. unter Hinzufügen des Suffix \".png\" gespeichert werden."),
-                                         h2("Glaettungsmethoden"),
-                                         HTML("<p>lm: linear regression model <br> glm: generalized linear model <br> gam: generalized additive mode <br> loess: locally estimated scatterplot smoothing</p>")),
+                                tabPanel("Info", value = 4,
+                                         includeHTML("HTML/info-tab.html")),
                                 
                                 id = "tabselected"
                                 
