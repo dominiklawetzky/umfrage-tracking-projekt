@@ -21,7 +21,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                   conditionalPanel(condition="input.tabselected == 1",
                                    
                                    # ZEITINTERVALL AUSWaeHLEN
-                                   dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
+                                   dateRangeInput("date1", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
                                                   min = "2010-01-01", max = "2021-07-20",
                                                   format = "dd.mm.yyyy", language = "de", separator = "bis"),
                                    
@@ -35,12 +35,12 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                                  value = FALSE),
                                    
                                    
-                                   # PARTEIEN AUSWaeHLEN
+                                   # PARTEIEN AUSWÄHLEN
                                    checkboxGroupInput(inputId = "partei", label = strong("Parteien"),
                                                       selected = unique(dataset$Partei),
                                                       choices = unique(dataset$Partei)),
                                    
-                                   # ERKLaeRUNG ZU LINKEN
+                                   # ERKLÄRUNG ZU LINKEN
                                    HTML("<em>(*) Bei Infratest bis zum 10.06.2005 nur PDS, ab Juli 2007 \"DIE LINKE\"</em><br><br>"),
                                    HTML("<strong>Zuletzt aktualisiert:</strong><p>20.07.2021</p>"),
                                    HTML("<a class=\"github-button\" href=\"https://github.com/dominiklawetzky/umfrage-tracking-projekt\" data-icon=\"octicon-star\" 
@@ -52,26 +52,26 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                   
                   conditionalPanel(condition="input.tabselected == 2",
                                    
-                                   # ZEITINTERVALL AUSWaeHLEN
-                                   dateRangeInput("date", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
+                                   # ZEITINTERVALL AUSWÄHLEN
+                                   dateRangeInput("date2", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
                                                   min = "2010-01-01", max = "2021-07-20",
                                                   format = "dd.mm.yyyy", language = "de", separator = "bis"),
                                    
-                                   # INSTITUT AUSWaeHLEN
+                                   # INSTITUT AUSWÄHLEN
                                    selectInput(inputId = "institut_sel", label = strong("Umfrage-Institute"),
                                                selected = c("Infratest"),
                                                choices = unique(dataset$Institut)),
                                    
-                                   # PARTEI AUSWaeHLEN
+                                   # PARTEI AUSWÄHLEN
                                    selectInput(inputId = "partei_sel", label = strong("Parteien"),
                                                selected = c("Union"),
                                                choices = unique(dataset$Partei)),
                                    
                                    
-                                   # LOESS-GLaeTTUNG JA/NEIN
+                                   # LOESS-GLÄTTUNG JA/NEIN
                                    checkboxInput(inputId = "smoother", label = strong("LOESS-Glättung aktivieren"), value = FALSE),
                                    
-                                   # SPAN DER LOESS-GLaeTTUNG
+                                   # SPAN DER LOESS-GLÄTTUNG
                                    conditionalPanel(condition = "input.smoother == true",
                                                     sliderInput(inputId = "span", label = "Spannweite:",
                                                                 min = 1, max = 10, value = 5, step = 0.01,
@@ -127,26 +127,52 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
 ##### Server Logic ------
 server <- function(input, output, session) {
   
+  colors <-  reactive({
+                c("AfD" = "#019ee3", 
+                  "Andere" = "#7c7c7c", 
+                  "FDP" = "#fbeb04", 
+                  "Grüne" = "#1ca42c", 
+                  "Linke*" = "#bd3076", 
+                  "Piraten" = "#f39200",
+                  "SPD" = "#e2001a", 
+                  "Union" = "#000000")
+    })
+
+  
   # INTERVALL-ANFANG DEFINIEREN
   min <- reactive({
-    as.Date(input$date[1], format = "%d.%m.%y")
+    if(input$tabselected == 1) {
+      as.Date(input$date1[1], format = "%d.%m.%y")
+    }
+    else if (input$tabselected == 2) {
+      as.Date(input$date2[1], format = "%d.%m.%y")
+    }
   })
+  
   
   # INTERVALL-ENDE DEFINIEREN
   max <- reactive({
-    as.Date(input$date[2], format = "%d.%m.%y")
+    if(input$tabselected == 1) {
+      as.Date(input$date1[2], format = "%d.%m.%y")
+    }
+    else if (input$tabselected == 2) {
+      as.Date(input$date2[2], format = "%d.%m.%y")
+    }
   })
   
-  # DATEN NACH INSTITUT / PARTEI FILTERN
+  
+  # DATEN NACH INSTITUT / PARTEI FILTERN / DATUM
   filtered_data <- reactive({
     if(input$tabselected == 1){
-      dataset %>% filter(Institut %in% input$institut) %>%
-        filter(Partei %in% input$partei)
+      dataset %>% filter(Institut %in% input$institut) %>% # Filter nach Institut
+        filter(Partei %in% input$partei) # Filter nach Partei
     }
     else if(input$tabselected == 2){
       if(input$smoother == FALSE) {
-        dataset %>% filter(Institut %in% input$institut_sel) %>%
-          filter(Partei %in% input$partei_sel)
+        dataset %>% filter(Institut %in% input$institut_sel) %>% # Filter nach Institut
+          filter(Partei %in% input$partei_sel) %>% # Filter nach Partei
+            filter(between(Datum, as.Date(min()), as.Date(max()))) %>% # Filter nach Datum
+            print()
       }
       else {
         dat <- dataset %>% filter(Institut %in% input$institut_sel) %>%
@@ -156,24 +182,16 @@ server <- function(input, output, session) {
         
         dat$smoothed <- ksmooth(dat$ID, dat$Prozent, kernel = "normal", bandwidth = input$span)$y # LOESS-Glättung anwenden
         
-        print(dat) # Ausgabe
+        dat %>% 
+          filter(between(Datum, as.Date(min()), as.Date(max()))) %>% 
+          print() # Ausgabe
       }
     }
   })
   
   
+  
   output$plot1 <- renderPlotly({
-    
-
-  # FARBEN FESTLEGEN
-   colors <- c("AfD" = "#019ee3", 
-               "Andere" = "#7c7c7c", 
-               "FDP" = "#fbeb04", 
-               "Grüne" = "#1ca42c", 
-               "Linke*" = "#bd3076", 
-               "Piraten" = "#f39200",
-               "SPD" = "#e2001a", 
-               "Union" = "#000000")
    
    
   # GERADE DEFINIEREN
@@ -194,7 +212,7 @@ server <- function(input, output, session) {
    plot1 <- filtered_data() %>% filter(between(Datum, as.Date(min()), as.Date(max()))) %>%
      plot_ly(x = ~Datum, y = ~Prozent) %>%
      add_lines(color = ~Partei, 
-               colors = colors,
+               colors = colors(),
                linetype = ~as.factor(Institut)) %>%
      layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
             margin = c(1,1,1,1))
@@ -205,29 +223,18 @@ server <- function(input, output, session) {
    else {
      plot1 # Plot 1 OHNE Bundestagswahlen
    }
-
-    
   })
+  
+  
   
   output$plot2 <- renderPlotly({
     
-    
-    # FARBEN FESTLEGEN
-    colors <- c("AfD" = "#019ee3", 
-                "Andere" = "#7c7c7c", 
-                "FDP" = "#fbeb04", 
-                "Grüne" = "#1ca42c", 
-                "Linke*" = "#bd3076", 
-                "Piraten" = "#f39200",
-                "SPD" = "#e2001a", 
-                "Union" = "#000000")
-    
     # PLOT OHNE LOESS
     if(input$smoother == FALSE){
-    plot2 <- filtered_data() %>% filter(between(Datum, as.Date(min()), as.Date(max()))) %>%
+    plot2 <- filtered_data() %>%
         plot_ly(x = ~Datum, y = ~Prozent) %>%
         add_lines(color = ~Partei, 
-                  colors = colors) %>%
+                  colors = colors()) %>%
         layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
                margin = c(1,1,1,1),
                annotations = 
@@ -237,12 +244,13 @@ server <- function(input, output, session) {
                       font=list(size=12, color="grey")))
     }
     
+    
     # PLOT MIT LOESS
     else {
-      plot2_loess <- filtered_data() %>% filter(between(Datum, as.Date(min()), as.Date(max()))) %>%
+      plot2_loess <- filtered_data() %>%
           plot_ly(x = ~Datum, y = ~smoothed) %>%
           add_lines(color = ~Partei, 
-                    colors = colors) %>%
+                    colors = colors()) %>%
           layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
                  yaxis = list(title = "Prozent (geglaettet)"),
                  margin = c(1,1,1,1),
@@ -257,8 +265,6 @@ server <- function(input, output, session) {
                       xanchor='right', yanchor='auto', xshift=0, yshift=0,
                       font=list(size=14, color="grey")))
     }
-    
-    
   })
   
   
