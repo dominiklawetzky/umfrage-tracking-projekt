@@ -251,19 +251,14 @@ server <- function(input, output, session) {
           plot_ly(x = ~Datum, y = ~smoothed) %>%
           add_lines(color = ~Partei, 
                     colors = colors()) %>%
-          layout(title = sprintf("Zustimmungswerte der %s /nLocal Polynomial Regression Fitting", input$partei_sel),
+          layout(title = sprintf("Zustimmungswerte der %s \nLocal Polynomial Regression Fitting", input$partei_sel),
                  yaxis = list(title = "Prozent (geglaettet)"),
                  margin = c(1,1,1,1),
                  annotations = 
                    list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
                         showarrow = F, xref='paper', yref='paper', 
                         xanchor='right', yanchor='auto', xshift=0, yshift=0,
-                        font=list(size=12, color="grey"))) %>%
-          layout(annotations = 
-                 list(x = .6 , y = 1.175, text = "Local Polynomial Regression Fitting", 
-                      showarrow = F, xref='paper', yref='paper', 
-                      xanchor='right', yanchor='auto', xshift=0, yshift=0,
-                      font=list(size=14, color="grey")))
+                        font=list(size=12, color="grey")))
     }
   })
   
