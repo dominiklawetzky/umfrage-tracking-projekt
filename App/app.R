@@ -102,7 +102,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                               tabPanel("Trendanalyse", value = 2,
                                        plotlyOutput("plot2",
                                                     height = "auto", width = "auto"),
-                                       includeHTML("HTML/trendanalyse.html")),
+                                       includeHTML("HTML/infos.html")),
                               
                               # TAB 3
                               # tabPanel("...", 
