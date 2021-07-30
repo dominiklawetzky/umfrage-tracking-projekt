@@ -215,7 +215,9 @@ server <- function(input, output, session) {
                colors = colors(),
                linetype = ~as.factor(Institut)) %>%
      layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
-            margin = c(1,1,1,1))
+            margin = c(1,1,1,1))  %>%
+     config(locale = "de")
+   
    
   if(input$btw == TRUE) {
     plot1 <- plot1 %>% layout(shapes = list(vline("2013-09-22"), vline("2017-09-24"))) # Plot 1 MIT Bundestagswahlen
@@ -241,7 +243,8 @@ server <- function(input, output, session) {
                  list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
                       showarrow = F, xref='paper', yref='paper', 
                       xanchor='right', yanchor='auto', xshift=0, yshift=0,
-                      font=list(size=12, color="grey")))
+                      font=list(size=12, color="grey"))) %>%
+      config(locale = "de")
     }
     
     
@@ -252,13 +255,14 @@ server <- function(input, output, session) {
           add_lines(color = ~Partei, 
                     colors = colors()) %>%
           layout(title = sprintf("Zustimmungswerte der %s \nLocal Polynomial Regression Fitting", input$partei_sel),
-                 yaxis = list(title = "Prozent (geglaettet)"),
+                 yaxis = list(title = "Prozent (geglättet)"),
                  margin = c(1,1,1,1),
                  annotations = 
                    list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
                         showarrow = F, xref='paper', yref='paper', 
                         xanchor='right', yanchor='auto', xshift=0, yshift=0,
-                        font=list(size=12, color="grey")))
+                        font=list(size=12, color="grey"))) %>%
+        config(locale = "de")
     }
   })
   
