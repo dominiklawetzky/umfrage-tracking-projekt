@@ -235,7 +235,7 @@ server <- function(input, output, session) {
         plot_ly(x = ~Datum, y = ~Prozent) %>%
         add_lines(color = ~Partei, 
                   colors = colors()) %>%
-        layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+        layout(title = sprintf("Zustimmungswerte der %s", input$partei_sel),
                margin = c(1,1,1,1),
                annotations = 
                  list(x = 1, y = -0.2, text = sprintf("Quelle: %s", input$institut_sel), 
@@ -251,7 +251,7 @@ server <- function(input, output, session) {
           plot_ly(x = ~Datum, y = ~smoothed) %>%
           add_lines(color = ~Partei, 
                     colors = colors()) %>%
-          layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+          layout(title = sprintf("Zustimmungswerte der %s /nLocal Polynomial Regression Fitting", input$partei_sel),
                  yaxis = list(title = "Prozent (geglaettet)"),
                  margin = c(1,1,1,1),
                  annotations = 
@@ -271,6 +271,7 @@ server <- function(input, output, session) {
 
 }
 
+?sprintf
 
 
 ##### Applikation starten -----
