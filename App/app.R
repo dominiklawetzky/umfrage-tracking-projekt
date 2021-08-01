@@ -266,28 +266,8 @@ server <- function(input, output, session) {
      }
      
    }
-  })
     
-  }
-   else {
-     
-     # RESPONSIVE LEGENDE
-     if(plot_size() >= 800) {
-       plot1 %>% layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")), 
-                        margin = c(1,1,1,1)) # Plot 1 OHNE Bundestagswahlen
-     }
-     else {
-       plot1 %>% layout(title = sprintf("Zustimmungswerte der großen \npolitischen Parteien seit %s", format(min(), "%d.%m.%y")),
-                        legend = list(orientation = "h",
-                                      xanchor = "center",
-                                      yanchor = "top",
-                                      x = .5,
-                                      y = -.8,
-                                      font = list(size = 12)),
-                        margin = c(0,0,0,0))
-     }
-     
-   }
+
   })
   
   
