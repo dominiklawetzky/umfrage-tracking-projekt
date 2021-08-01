@@ -219,6 +219,7 @@ server <- function(input, output, session) {
                colors = colors(),
                linetype = ~as.factor(Institut)) %>%
      layout(legend = list(font = list(size = 12)),
+            dragmode = "select",
             autosize = TRUE
             ) %>%
      config(locale = "de")
@@ -252,6 +253,28 @@ server <- function(input, output, session) {
      if(plot_size() >= 800) {
        plot1 %>% layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")), 
                         margin = c(1,1,1,1))
+     }
+     else {
+       plot1 %>% layout(title = sprintf("Zustimmungswerte der großen \npolitischen Parteien seit %s", format(min(), "%d.%m.%y")),
+                        legend = list(orientation = "h",
+                                      xanchor = "center",
+                                      yanchor = "top",
+                                      x = .5,
+                                      y = -.8,
+                                      font = list(size = 12)),
+                        margin = c(0,0,0,0))
+     }
+     
+   }
+  })
+    
+  }
+   else {
+     
+     # RESPONSIVE LEGENDE
+     if(plot_size() >= 800) {
+       plot1 %>% layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")), 
+                        margin = c(1,1,1,1)) # Plot 1 OHNE Bundestagswahlen
      }
      else {
        plot1 %>% layout(title = sprintf("Zustimmungswerte der großen \npolitischen Parteien seit %s", format(min(), "%d.%m.%y")),
