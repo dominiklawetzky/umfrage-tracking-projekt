@@ -3,7 +3,7 @@
 
 
 ## PACKAGE NAMEN
-packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny", "plotly")
+packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny", "plotly", "readr", "rlist", "RCurl", "XML")
 
 
 

@@ -1,3 +1,4 @@
+#setwd("/Users/dominiklawetzky/Documents/GitHub/sonntagsfrage/App")
 source("data.R", local = TRUE)
 
 library(shiny)
@@ -9,7 +10,7 @@ library(plotly)
 library(shinythemes)
 
 
-# Version 0.4.1
+# Version 0.4.2
 
 ##### UI ------
 
@@ -92,11 +93,9 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                               
                               # TAB 1
                               tabPanel("Übersicht", value = 1,
-                                       
                                        plotlyOutput("plot1",
-                                                    height = "auto", width = "auto"),
-                                       includeHTML("HTML/infos.html")
-                              ),
+                                                    height = "650px", width = "100%"),
+                                       includeHTML("HTML/infos.html")),
                               
                               # TAB 2
                               tabPanel("Trendanalyse", value = 2,
@@ -131,6 +130,7 @@ server <- function(input, output, session) {
                 c("AfD" = "#019ee3", 
                   "Andere" = "#7c7c7c", 
                   "FDP" = "#fbeb04", 
+                  "Freie Wähler" = "#084e8b",
                   "Grüne" = "#1ca42c", 
                   "Linke*" = "#bd3076", 
                   "Piraten" = "#f39200",
@@ -189,6 +189,10 @@ server <- function(input, output, session) {
     }
   })
   
+  # PLOT-GRÖSSE SPEICHERN
+  plot_size <- reactive({
+    session$clientData$output_plot1_width
+  })
   
   
   output$plot1 <- renderPlotly({
@@ -214,16 +218,52 @@ server <- function(input, output, session) {
      add_lines(color = ~Partei, 
                colors = colors(),
                linetype = ~as.factor(Institut)) %>%
-     layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
-            margin = c(1,1,1,1))  %>%
+     layout(legend = list(font = list(size = 12)),
+            autosize = TRUE
+            ) %>%
      config(locale = "de")
    
    
+  # BTW ANZEIGEN / NICHT ANZEIGEN
   if(input$btw == TRUE) {
-    plot1 <- plot1 %>% layout(shapes = list(vline("2013-09-22"), vline("2017-09-24"))) # Plot 1 MIT Bundestagswahlen
+    
+    # RESPONSIVE LEGENDE
+    if(plot_size() >= 800) {
+      plot1 %>% layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")),
+                       shapes = list(vline("2013-09-22"), vline("2017-09-24")),
+                       margin = c(1,1,1,1)) # Plot 1 MIT Bundestagswahlen
+    }
+    else {
+      plot1 %>% layout(shapes = list(vline("2013-09-22"), vline("2017-09-24"))) %>%
+        layout(title = sprintf("Zustimmungswerte der großen \npolitischen Parteien seit %s", format(min(), "%d.%m.%y")),
+               legend = list(orientation = "h",
+                             xanchor = "center",
+                             yanchor = "top",
+                             x = .5,
+                             y = -.8,
+                             font = list(size = 12)),
+               margin = c(0,0,0,0))
+    }
+    
   }
    else {
-     plot1 # Plot 1 OHNE Bundestagswahlen
+     
+     # RESPONSIVE LEGENDE
+     if(plot_size() >= 800) {
+       plot1 %>% layout(title = sprintf("Zustimmungswerte der großen politischen Parteien seit %s", format(min(), "%d.%m.%y")), 
+                        margin = c(1,1,1,1))
+     }
+     else {
+       plot1 %>% layout(title = sprintf("Zustimmungswerte der großen \npolitischen Parteien seit %s", format(min(), "%d.%m.%y")),
+                        legend = list(orientation = "h",
+                                      xanchor = "center",
+                                      yanchor = "top",
+                                      x = .5,
+                                      y = -.8,
+                                      font = list(size = 12)),
+                        margin = c(0,0,0,0))
+     }
+     
    }
   })
   
@@ -269,8 +309,6 @@ server <- function(input, output, session) {
   
 
 }
-
-?sprintf
 
 
 ##### Applikation starten -----
