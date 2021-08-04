@@ -65,3 +65,4 @@ Da ich dieses Projekt in meiner Freizeit voranbringe, kann ich jedoch nicht vers
 - [Infratest Dimap](https://www.infratest-dimap.de/umfragen-analysen/bundesweit/sonntagsfrage/)
 - [Allensbach](https://www.ifd-allensbach.de/studien-und-berichte/sonntagsfrage/gesamt.html)
 - [Forschungsgruppe Wahlen](https://www.wahlrecht.de/umfragen/politbarometer.htm)
+- [INSA/YouGov](https://www.wahlrecht.de/umfragen/insa.htm)
