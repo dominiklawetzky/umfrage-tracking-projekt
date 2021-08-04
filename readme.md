@@ -50,7 +50,7 @@ Die wichtigsten verwendeten Tool sind:
 - Plotly
 - Datapasta
 
-Eine Liste aller verwendeten Pakete findet sich in der [Präambel](https://github.com/dominiklawetzky/umfrage-tracking-projekt/blob/main/preamble.R):
+Eine Liste aller verwendeten Pakete findet sich in der [Präambel](https://github.com/dominiklawetzky/umfrage-tracking-projekt/blob/255a701bdce0a8890b7bd0cc3a48ed487307423b/App/preamble.R):
 
 ```R
 packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny", "plotly", "readr", "rlist", "RCurl", "XML")
