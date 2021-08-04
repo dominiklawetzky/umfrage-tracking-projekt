@@ -53,7 +53,7 @@ Die wichtigsten verwendeten Tool sind:
 Eine Liste aller verwendeten Pakete findet sich in der [Präambel](https://github.com/dominiklawetzky/umfrage-tracking-projekt/blob/main/preamble.R):
 
 ```R
-packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny")
+packages <- c("ggplot2", "readxl", "dplyr", "tidyr", "knitr", "shiny", "plotly", "readr", "rlist", "RCurl", "XML")
 ```
 
 **Ich habe eine Idee, wie das Umfrage-Tracking-Tool noch besser wird. Was soll ich tun?**
