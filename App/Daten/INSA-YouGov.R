@@ -17,7 +17,7 @@ colnames(df) <- c("Datum", "Empty", "Union", "SPD", "Grüne", "FDP", "Linke*", "
 
 drops <- c("Empty","Befragte", "Zeitraum")
 df <- df[ , !(names(df) %in% drops)]
-df <- df[-c(255), ]
+df <- df %>% filter(Datum != "02.02.2017") # Fehlerhafte Zeile löschen
 
 # Prozente zu Dezimalzahl umwandeln
 df$Union <- parse_number(df$Union, locale = locale(decimal_mark = ','))
