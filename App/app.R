@@ -22,8 +22,8 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                   conditionalPanel(condition="input.tabselected == 1",
                                    
                                    # ZEITINTERVALL AUSWaeHLEN
-                                   dateRangeInput("date1", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-07-20",
-                                                  min = "2010-01-01", max = "2021-07-20",
+                                   dateRangeInput("date1", strong("Betrachtungszeitraum"), start = "2010-01-01", end = "2021-08-23",
+                                                  min = "2010-01-01", max = "2021-08-23",
                                                   format = "dd.mm.yyyy", language = "de", separator = "bis"),
                                    
                                    # INSTITUT AUSWaeHLEN
@@ -43,7 +43,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                    
                                    # ERKLÄRUNG ZU LINKEN
                                    HTML("<em>(*) Bei Infratest bis zum 10.06.2005 nur PDS, ab Juli 2007 \"DIE LINKE\"</em><br><br>"),
-                                   HTML("<strong>Zuletzt aktualisiert:</strong><p>20.07.2021</p>"),
+                                   HTML("<strong>Zuletzt aktualisiert:</strong><p>23.08.2021</p>"),
                                    HTML("<a class=\"github-button\" href=\"https://github.com/dominiklawetzky/umfrage-tracking-projekt\" data-icon=\"octicon-star\" 
                         data-size=\"large\" data-show-count=\"true\" 
                         aria-label=\"Star dominiklawetzky/umfrage-tracking-projekt on GitHub\">GitHub Repository</a>")
