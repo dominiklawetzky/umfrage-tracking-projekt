@@ -59,7 +59,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                                   format = "dd.mm.yyyy", language = "de", separator = "bis"),
                                    
                                    # INSTITUT AUSWÄHLEN
-                                   selectInput(inputId = "institut_sel", label = strong("Umfrage-Institute"),
+                                   selectInput(inputId = "institut2", label = strong("Umfrage-Institute"),
                                                selected = c("Infratest"),
                                                choices = unique(dataset$Institut)),
                                    
@@ -78,6 +78,39 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                                                 min = 1, max = 10, value = 5, step = 0.01,
                                                                 animate = animationOptions(interval = 100)),
                                                     HTML("Je gröer der Wert, desto staerker die Glättung."))
+                                   
+                  ),
+                  
+                  conditionalPanel(condition="input.tabselected == 3",
+                                   
+                                   
+                                   # INSTITUT AUSWÄHLEN
+                                   selectInput(inputId = "institut3", label = strong("Umfrage-Institute"),
+                                               selected = c("Infratest"),
+                                               choices = unique(dataset$Institut))
+                                  
+                                   
+                  ),
+                  
+                  
+                  conditionalPanel(condition="input.tabselected == 5",
+                                   
+                                   # ZEITINTERVALL AUSWaeHLEN
+                                   dateRangeInput("date5", strong("Betrachtungszeitraum"), start = "2020-01-01", end = "2021-08-23",
+                                                  min = "2020-01-01", max = "2021-08-23",
+                                                  format = "dd.mm.yyyy", language = "de", separator = "bis"),
+                                   
+                                   # INSTITUT AUSWÄHLEN
+                                   checkboxGroupInput(inputId = "institut5", label = strong("Umfrage-Institute"),
+                                                      selected = unique(dataset$Institut),
+                                                      choices = unique(dataset$Institut)),
+
+                                   
+                                   # PARTEIEN AUSWÄHLEN
+                                   checkboxGroupInput(inputId = "partei5", label = strong("Parteien"),
+                                                      selected = unique(dataset$Partei),
+                                                      choices = unique(dataset$Partei))
+                              
                                    
                   )
                   
@@ -104,12 +137,19 @@ ui <- fluidPage(theme = shinythemes::shinytheme("simplex"),
                                        includeHTML("HTML/infos.html")),
                               
                               # TAB 3
-                              # tabPanel("...", 
-                              #          plotOutput("deaths",
-                              #                     width = "100%")),
+                              tabPanel("Balkendiagramm", value = 3,
+                                       plotlyOutput("barplot",
+                                                    height = "auto", width = "auto"),
+                                       HTML("<h3>Tabellarische Darstellung</h3>"),
+                                       tableOutput("table"),
+                                       includeHTML("HTML/infos.html")),
                               
                               # TAB 4
                               tabPanel("Info", value = 4, includeHTML("HTML/info-tab.html")),
+                          
+                              
+                              # TAB 5
+                              tabPanel("Datensatz", value = 5, tableOutput("full_table")),
                               
                               id = "tabselected"
                               
@@ -147,6 +187,9 @@ server <- function(input, output, session) {
     else if (input$tabselected == 2) {
       as.Date(input$date2[1], format = "%d.%m.%y")
     }
+    else if (input$tabselected == 5) {
+      as.Date(input$date5[1], format = "%d.%m.%y")
+    }
   })
   
   
@@ -157,6 +200,9 @@ server <- function(input, output, session) {
     }
     else if (input$tabselected == 2) {
       as.Date(input$date2[2], format = "%d.%m.%y")
+    }
+    else if (input$tabselected == 5) {
+      as.Date(input$date5[2], format = "%d.%m.%y")
     }
   })
   
@@ -169,13 +215,13 @@ server <- function(input, output, session) {
     }
     else if(input$tabselected == 2){
       if(input$smoother == FALSE) {
-        dataset %>% filter(Institut %in% input$institut_sel) %>% # Filter nach Institut
+        dataset %>% filter(Institut %in% input$institut2) %>% # Filter nach Institut
           filter(Partei %in% input$partei_sel) %>% # Filter nach Partei
             filter(between(Datum, as.Date(min()), as.Date(max()))) %>% # Filter nach Datum
             print()
       }
       else {
-        dat <- dataset %>% filter(Institut %in% input$institut_sel) %>%
+        dat <- dataset %>% filter(Institut %in% input$institut2) %>%
           filter(Partei %in% input$partei_sel)
         
         dat$ID <- 1:nrow(dat) # ID hinzufügen für LOESS
@@ -186,6 +232,23 @@ server <- function(input, output, session) {
           filter(between(Datum, as.Date(min()), as.Date(max()))) %>% 
           print() # Ausgabe
       }
+    }
+    else if(input$tabselected == 3){
+      if(input$institut3 != "Allensbach"){
+      dat <- dataset %>% filter(Institut %in% input$institut3) # Filter nach Institut
+      
+      dat %>% slice_max(Datum, n = 8, with_ties = TRUE)
+      }
+      else{
+        dat <- dataset %>% filter(Institut %in% input$institut3) # Filter nach Institut
+        
+        dat %>% slice_max(Datum, n = 7, with_ties = TRUE)
+      }
+    }
+    else if(input$tabselected == 5){
+      dataset %>% filter(Institut %in% input$institut5) %>% # Filter nach Institut
+        filter(Partei %in% input$partei5) %>% # Filter nach Partei
+        filter(between(Datum, as.Date(min()), as.Date(max()))) # Filter nach Datum
     }
   })
   
@@ -309,6 +372,60 @@ server <- function(input, output, session) {
     }
   })
   
+  
+  output$barplot <- renderPlotly({
+    
+    colors_static <-  c("AfD" = "#019ee3", 
+                         "Andere" = "#7c7c7c", 
+                         "FDP" = "#fbeb04", 
+                         "Freie Wähler" = "#084e8b",
+                         "Grüne" = "#1ca42c", 
+                         "Linke*" = "#bd3076", 
+                         "Piraten" = "#f39200",
+                         "SPD" = "#e2001a", 
+                         "Union" = "#000000")
+    
+    order <- list(categoryorder = "array",
+                  categoryarray = c("Union", 
+                                    "SPD", 
+                                    "AfD",
+                                    "FDP",
+                                    "Linke*",
+                                    "Grüne",
+                                    "Piraten",
+                                    "Andere"))
+  
+    date <- filtered_data()$Datum[1]
+    
+    barplot <- filtered_data() %>%
+      plot_ly(x = ~Partei, y = ~Prozent, type = "bar", color = ~Partei, colors = colors_static) %>%
+      layout(legend = list(font = list(size = 12)),
+             # xaxis = order,
+             dragmode = "select",
+             autosize = TRUE) %>%
+      config(locale = "de") %>%
+      layout(title = sprintf("Aktuellste Zustimmungswerte\n%s", format(date, "%d.%m.%y")),
+             legend = list(orientation = "h",
+                           xanchor = "center",
+                           yanchor = "top",
+                           x = .5,
+                           y = -.4,
+                           font = list(size = 12),
+                           margin = c(0,0,0,0)),
+             margin = c(0,0,0,0)) # Plot 1 MIT Bundestagswahlen
+    
+  })
+  
+  output$table <- renderTable({
+    filtered_data() %>% subset(select = c(Prozent, Partei, Institut)) 
+  })
+  
+  output$full_table <- renderTable({
+    data.frame(Datum = as.character(filtered_data()$Datum),
+               Partei = filtered_data()$Partei,
+               Prozent = filtered_data()$Prozent,
+               Institut = filtered_data()$Institut)
+  })
   
 
 }
